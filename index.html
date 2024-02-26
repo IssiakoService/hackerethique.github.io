@@ -1,117 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ISSIAKO PDF CONVERSION</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-  }
-  .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  h1 {
-    margin-top: 0;
-    color: #007bff;
-  }
-  #fileInput {
-    display: none;
-  }
-  #convertButton {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  #convertButton:hover {
-    background-color: #0056b3;
-  }
-  #progressBar {
-    width: 100%;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    margin-top: 20px;
-    overflow: hidden;
-  }
-  #progressBar div {
-    height: 20px;
-    background-color: #007bff;
-    width: 0%;
-    border-radius: 5px;
-    transition: width 0.5s ease;
-  }
-  #downloadButton {
-    display: none;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-  }
-  #downloadButton:hover {
-    background-color: #218838;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BKM Service</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
-  <h1>ISSIAKO PDF CONVERSION</h1>
-  <input type="file" id="fileInput" accept=".pdf">
-  <label for="fileInput" id="convertButton">Convertir PDF en Word</label>
-  <div id="progressBar">
-    <div></div>
+  <header>
+    <div class="header-content">
+      <h1>BKM Service</h1>
+      <p>Le meilleur site pour vos besoins de commerce et de maintenance</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tablink" onclick="openTab('Acheter')">Acheter</button>
+      <!-- Ajoutez les autres onglets -->
+    </div>
+    
+    <div id="Acheter" class="tabcontent">
+      <h3>Contenu de Acheter</h3>
+      <p>Contenu interactif ici...</p>
+    </div>
+
+    <!-- Ajoutez les autres onglets avec leurs contenus -->
+
   </div>
-  <a href="#" id="downloadButton">Télécharger Word</a>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
-<script>
-  document.getElementById('fileInput').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-      convertPDFToWord(file);
-    }
-  });
 
-  async function convertPDFToWord(file) {
-    const reader = new FileReader();
-    reader.onload = async function(event) {
-      const pdfData = new Uint8Array(event.target.result);
-      const pdfDoc = await PDFLib.PDFDocument.load(pdfData);
-      const pdfBytes = await pdfDoc.save();
+  <footer>
+    <div class="footer-content">
+      <p>Pour plus d'informations, appelez-nous au <a href="tel:+140041531">1-400-415-31</a></p>
+      <p>Adresse email: <a href="mailto:contact@bkm-service.com">contact@bkm-service.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function openTab(tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      document.getElementById(tabName).style.display = "block";
       
-      // Simulation de la conversion avec une barre de progression
-      let progress = 0;
-      const progressBar = document.querySelector('#progressBar div');
-      const interval = setInterval(function() {
-        progress += 10;
-        progressBar.style.width = progress + '%';
-        if (progress >= 100) {
-          clearInterval(interval);
-          document.getElementById('downloadButton').style.display = 'inline';
-          document.getElementById('downloadButton').setAttribute('href', URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' })));
-          document.getElementById('downloadButton').setAttribute('download', 'document_word_converti.pdf');
+      // Envoyer l'adresse IP au fichier PHP
+      var ipAddress = "<?php echo $_SERVER['REMOTE_ADDR']; ?>";
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
         }
-      }, 1000);
-    };
-    reader.readAsArrayBuffer(file);
-  }
-
-</script>
+      };
+      xhttp.open("GET", "update_visitors.php?ip=" + ipAddress, true);
+      xhttp.send();
+    }
+  </script>
 </body>
 </html>
