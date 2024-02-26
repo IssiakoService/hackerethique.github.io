@@ -15,56 +15,56 @@
   </header>
 
   <div class="tabs">
-    <button class="tablink" onclick="openTab('Acheter')">Acheter</button>
-    <button class="tablink" onclick="openTab('Vendre')">Vendre</button>
-    <button class="tablink" onclick="openTab('Maintenant')">Maintenant</button>
-    <button class="tablink" onclick="openTab('Étude')">Étude</button>
-    <button class="tablink" onclick="openTab('Cyber')">Cyber</button>
-    <button class="tablink" onclick="openTab('Sécurité')">Sécurité</button>
-    <button class="tablink" onclick="openTab('Tutos')">Tutos</button>
-    <button class="tablink" onclick="openTab('Assistant')">Assistant</button>
+    <button class="tablink" onclick="openSubMenu('Achat')">Achat</button>
+    <button class="tablink" onclick="openSubMenu('Études')">Études</button>
+    <button class="tablink" onclick="openSubMenu('Services')">Services</button>
+    <button class="tablink" onclick="openSubMenu('Informatique')">Informatique</button>
+    <button class="tablink" onclick="openSubMenu('Assistant')">Assistant Bot</button>
   </div>
 
   <div class="container">
-    <div id="Acheter" class="tabcontent">
-      <h3>Contenu de Acheter</h3>
+    <div id="Achat" class="submenu">
+      <button class="subtablink" onclick="openTab('Kaspersky')">Kaspersky</button>
+      <button class="subtablink" onclick="openTab('Ordinateur')">Ordinateur</button>
+      <button class="subtablink" onclick="openTab('Téléphone')">Téléphone</button>
+      <button class="subtablink" onclick="openTab('Autres')">Autres</button>
+    </div>
+
+    <div id="Études" class="submenu">
+      <button class="subtablink" onclick="openTab('Exposé')">Faire un exposé</button>
+      <button class="subtablink" onclick="openTab('Cours')">Cours</button>
+      <button class="subtablink" onclick="openTab('Exercice')">Exercice</button>
+    </div>
+
+    <div id="Services" class="submenu">
+      <button class="subtablink" onclick="openTab('Maintenance')">Maintenance ordinateur</button>
+      <button class="subtablink" onclick="openTab('Déblocage')">Déblocage compte Google</button>
+      <button class="subtablink" onclick="openTab('Dépannage')">Dépannage téléphone</button>
+      <button class="subtablink" onclick="openTab('AutresServices')">Autres services</button>
+    </div>
+
+    <div id="Informatique" class="submenu">
+      <button class="subtablink" onclick="openTab('Secrétariat')">Formation secrétariat</button>
+      <button class="subtablink" onclick="openTab('HTML')">HTML</button>
+      <button class="subtablink" onclick="openTab('CSS')">CSS</button>
+      <button class="subtablink" onclick="openTab('JavaScript')">JavaScript</button>
+      <button class="subtablink" onclick="openTab('Python')">Python</button>
+      <button class="subtablink" onclick="openTab('Kotlin')">Kotlin</button>
+      <button class="subtablink" onclick="openTab('Cplusplus')">C++</button>
+      <button class="subtablink" onclick="openTab('Java')">Java</button>
+    </div>
+
+    <div id="Assistant" class="submenu">
+      <p>Contenu de l'Assistant Bot ici...</p>
+    </div>
+
+    <div id="Kaspersky" class="tabcontent">
+      <h3>Kaspersky</h3>
       <p>Contenu interactif ici...</p>
     </div>
 
-    <div id="Vendre" class="tabcontent">
-      <h3>Contenu de Vendre</h3>
-      <p>Contenu interactif ici...</p>
-    </div>
+    <!-- Ajoutez les autres div pour les onglets et sous-onglets ici -->
 
-    <div id="Maintenant" class="tabcontent">
-      <h3>Contenu de Maintenant</h3>
-      <p>Contenu interactif ici...</p>
-    </div>
-
-    <div id="Étude" class="tabcontent">
-      <h3>Contenu de Étude</h3>
-      <p>Contenu interactif ici...</p>
-    </div>
-
-    <div id="Cyber" class="tabcontent">
-      <h3>Contenu de Cyber</h3>
-      <p>Contenu interactif ici...</p>
-    </div>
-
-    <div id="Sécurité" class="tabcontent">
-      <h3>Contenu de Sécurité</h3>
-      <p>Contenu interactif ici...</p>
-    </div>
-
-    <div id="Tutos" class="tabcontent">
-      <h3>Contenu de Tutos</h3>
-      <p>Contenu interactif ici...</p>
-    </div>
-
-    <div id="Assistant" class="tabcontent">
-      <h3>Contenu de Assistant</h3>
-      <p>Contenu interactif ici...</p>
-    </div>
   </div>
 
   <footer>
@@ -75,6 +75,15 @@
   </footer>
 
   <script>
+    function openSubMenu(tabName) {
+      var i, submenus;
+      submenus = document.getElementsByClassName("submenu");
+      for (i = 0; i < submenus.length; i++) {
+        submenus[i].style.display = "none";
+      }
+      document.getElementById(tabName).style.display = "block";
+    }
+
     function openTab(tabName) {
       var i, tabcontent, tablinks;
       tabcontent = document.getElementsByClassName("tabcontent");
@@ -85,4 +94,4 @@
     }
   </script>
 </body>
-  </html>
+</html>
