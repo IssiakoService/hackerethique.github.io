@@ -7,17 +7,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <h1>BKM Service</h1>
-      <p>Le meilleur site pour vos besoins de commerce et de maintenance</p>
-    </div>
-  </header>
-
   <div class="container">
     <div class="tabs">
       <button class="tablink" onclick="openTab('Acheter')">Acheter</button>
-      <!-- Ajoutez les autres onglets -->
+      <button class="tablink" onclick="openTab('Vendre')">Vendre</button>
+      <button class="tablink" onclick="openTab('Maintenant')">Maintenant</button>
+      <button class="tablink" onclick="openTab('Étude')">Étude</button>
+      <button class="tablink" onclick="openTab('Cyber')">Cyber</button>
+      <button class="tablink" onclick="openTab('Sécurité')">Sécurité</button>
+      <button class="tablink" onclick="openTab('Tutos')">Tutos</button>
+      <button class="tablink" onclick="openTab('Assistant')">Assistant</button>
     </div>
     
     <div id="Acheter" class="tabcontent">
@@ -29,13 +28,6 @@
 
   </div>
 
-  <footer>
-    <div class="footer-content">
-      <p>Pour plus d'informations, appelez-nous au <a href="tel:+140041531">1-400-415-31</a></p>
-      <p>Adresse email: <a href="mailto:contact@bkm-service.com">contact@bkm-service.com</a></p>
-    </div>
-  </footer>
-
   <script>
     function openTab(tabName) {
       var i, tabcontent, tablinks;
@@ -44,18 +36,16 @@
         tabcontent[i].style.display = "none";
       }
       document.getElementById(tabName).style.display = "block";
-      
-      // Envoyer l'adresse IP au fichier PHP
-      var ipAddress = "<?php echo $_SERVER['REMOTE_ADDR']; ?>";
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
-        }
-      };
-      xhttp.open("GET", "update_visitors.php?ip=" + ipAddress, true);
-      xhttp.send();
     }
   </script>
+  
+  <?php
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+    $visitor = $_SERVER['REMOTE_HOST'];
+    $file = 'visitors.txt';
+    $visitor_data = $ip_address . ' - ' . $visitor . PHP_EOL;
+    file_put_contents($file, $visitor_data, FILE_APPEND | LOCK_EX);
+  ?>
+  
 </body>
 </html>
