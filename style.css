@@ -1,13 +1,20 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
+/* Styles inspirés d'Alibaba */
+
+/* Réinitialisation des styles */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
 .container {
-  max-width: 800px;
-  margin: 20px auto; 
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
 }
 
@@ -23,59 +30,58 @@ h1 {
 
 p {
   color: #666;
+  font-size: 16px;
 }
 
 .tabs {
   display: flex;
-  justify-content: center;
-  background-color: #007bff; 
+  justify-content: space-around;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
   margin-bottom: 20px;
 }
 
 .tablink {
+  padding: 15px 20px;
+  background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  background-color: #007bff; 
-  color: white;
   font-size: 16px;
-  margin: 0 5px;
+  color: #333;
+  transition: all 0.3s ease;
 }
 
 .tablink:hover {
-  background-color: #0056b3; 
+  background-color: #f4f4f4;
 }
 
 .submenu {
   display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 10px;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  padding: 10px;
 }
 
 .subtablink {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px;
-  transition: 0.3s;
-  background-color: #ddd; 
-  color: #333;
+  display: block;
+  padding: 10px 15px;
   font-size: 14px;
-  margin: 0 5px 5px 0;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .subtablink:hover {
-  background-color: #bbb; 
+  background-color: #f4f4f4;
 }
 
 .tabcontent {
   display: none;
   padding: 20px;
-  border-top: 2px solid #007bff; 
 }
 
 footer {
@@ -83,9 +89,8 @@ footer {
   color: #fff;
   padding: 20px;
   text-align: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  margin-top: 20px;
+  border-radius: 5px;
 }
 
 .footer-content {
@@ -93,35 +98,21 @@ footer {
   margin: 0 auto;
 }
 
-.welcome-message {
-  text-align: center;
-  margin-bottom: 40px; 
-}
-
-.welcome-message h2 {
-  color: #007bff; 
-  font-size: 24px;
-}
-
-.welcome-message p {
-  color: #333;
-  font-size: 18px;
-}
-
 .toggle-voice-button {
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
-  background-color: #007bff; 
-  color: white;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
   border: none;
+  border-radius: 5px;
   outline: none;
   cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
 .toggle-voice-button:hover {
-  background-color: #0056b3; 
+  background-color: #0056b3;
 }
