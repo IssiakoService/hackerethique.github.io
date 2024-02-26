@@ -7,18 +7,18 @@ body {
 
 .container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto; /* Ajout de marges autour du contenu */
   padding: 20px;
 }
 
 .header-content {
   text-align: center;
-  padding: 55px 0;
+  padding: 20px 0;
 }
 
 h1 {
   color: #333;
-  font-size: 18px;
+  font-size: 36px;
   text-align: center;
 }
 
@@ -81,6 +81,9 @@ footer {
   color: #fff;
   padding: 20px;
   text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-content {
