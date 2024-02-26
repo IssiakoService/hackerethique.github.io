@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f7f7;
+  background-color: #f9f9f9;
   margin: 0;
   padding: 0;
 }
@@ -27,7 +27,7 @@ p {
 
 .tabs {
   overflow: hidden;
-  background-color: #333;
+  background-color: #007bff; /* Bleu */
 }
 
 .tablink {
@@ -37,18 +37,40 @@ p {
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
-  background-color: #555;
+  background-color: #007bff; /* Bleu */
   color: white;
 }
 
 .tablink:hover {
-  background-color: #777;
+  background-color: #0056b3; /* Bleu foncé */
+}
+
+.submenu {
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.subtablink {
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 14px;
+  transition: 0.3s;
+  background-color: #ddd; /* Gris clair */
+  color: #333;
+  margin: 0 5px 5px 0;
+}
+
+.subtablink:hover {
+  background-color: #bbb; /* Gris plus foncé */
 }
 
 .tabcontent {
   display: none;
   padding: 20px;
-  border-top: none;
+  border-top: 2px solid #007bff; /* Bleu */
 }
 
 footer {
@@ -60,13 +82,4 @@ footer {
 
 .footer-content {
   max-width: 800px;
-  margin: 0 auto;
-}
-
-.footer-content a {
-  color: #fff;
-}
-
-footer p {
-  margin: 10px 0;
-}
+  margin
