@@ -2,76 +2,84 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="google-site-verification" content="u1K9VIOlt13DVYrKRdCZrSRc2PDyDlN-2g0BgTtPWW0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BKM Service</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="tabs">
-    <button class="tablink" onclick="openSubMenu('Achat')">Achat</button>
-    <button class="tablink" onclick="openSubMenu('Études')">Études</button>
-    <button class="tablink" onclick="openSubMenu('Services')">Services</button>
-    <button class="tablink" onclick="openSubMenu('Informatique')">Informatique</button>
-    <button class="tablink" onclick="openSubMenu('Assistant')">Assistant Bot</button>
-  </div>
-
   <div class="container">
-    <div class="welcome-message">
-      <h2>Bienvenue sur BKM Service</h2>
-      <p>Le meilleur endroit pour répondre à tous vos besoins en commerce et en maintenance.</p>
-    </div>
+    <header>
+      <h1>BKM Service</h1>
+      <p>Le meilleur site pour vos besoins de commerce et de maintenance</p>
+    </header>
 
-    <div id="Achat" class="submenu">
-      <button class="subtablink" onclick="openTab('Kaspersky')">Kaspersky</button>
-      <button class="subtablink" onclick="openTab('Ordinateur')">Ordinateur</button>
-      <button class="subtablink" onclick="openTab('Téléphone')">Téléphone</button>
-      <button class="subtablink" onclick="openTab('Autres')">Autres</button>
-    </div>
+    <nav class="tabs">
+      <button class="tablink" onclick="openSubMenu('Achat')">Achat</button>
+      <button class="tablink" onclick="openSubMenu('Études')">Études</button>
+      <button class="tablink" onclick="openSubMenu('Services')">Services</button>
+      <button class="tablink" onclick="openSubMenu('Informatique')">Informatique</button>
+      <button class="tablink" onclick="openSubMenu('Assistant')">Assistant Bot</button>
+    </nav>
 
-    <div id="Études" class="submenu">
-      <button class="subtablink" onclick="openTab('Exposé')">Faire un exposé</button>
-      <button class="subtablink" onclick="openTab('Cours')">Cours</button>
-      <button class="subtablink" onclick="openTab('Exercice')">Exercice</button>
-    </div>
+    <main>
+      <div class="welcome-message">
+        <h2>Bienvenue sur BKM Service</h2>
+        <p>Le meilleur endroit pour répondre à tous vos besoins en commerce et en maintenance.</p>
+      </div>
 
-    <div id="Services" class="submenu">
-      <button class="subtablink" onclick="openTab('Maintenance')">Maintenance ordinateur</button>
-      <button class="subtablink" onclick="openTab('Déblocage')">Déblocage compte Google</button>
-      <button class="subtablink" onclick="openTab('Dépannage')">Dépannage téléphone</button>
-      <button class="subtablink" onclick="openTab('AutresServices')">Autres services</button>
-    </div>
+      <div id="Achat" class="submenu">
+        <button class="subtablink" onclick="openTab('Kaspersky')">Kaspersky</button>
+        <button class="subtablink" onclick="openTab('Ordinateur')">Ordinateur</button>
+        <button class="subtablink" onclick="openTab('Téléphone')">Téléphone</button>
+        <button class="subtablink" onclick="openTab('Autres')">Autres</button>
+      </div>
 
-    <div id="Informatique" class="submenu">
-      <button class="subtablink" onclick="openTab('Secrétariat')">Formation secrétariat</button>
-      <button class="subtablink" onclick="openTab('HTML')">HTML</button>
-      <button class="subtablink" onclick="openTab('CSS')">CSS</button>
-      <button class="subtablink" onclick="openTab('JavaScript')">JavaScript</button>
-      <button class="subtablink" onclick="openTab('Python')">Python</button>
-      <button class="subtablink" onclick="openTab('Kotlin')">Kotlin</button>
-      <button class="subtablink" onclick="openTab('Cplusplus')">C++</button>
-      <button class="subtablink" onclick="openTab('Java')">Java</button>
-    </div>
+      <div id="Études" class="submenu">
+        <button class="subtablink" onclick="openTab('Exposé')">Faire un exposé</button>
+        <button class="subtablink" onclick="openTab('Cours')">Cours</button>
+        <button class="subtablink" onclick="openTab('Exercice')">Exercice</button>
+      </div>
 
-    <div id="Assistant" class="submenu">
-      <p>Contenu de l'Assistant Bot ici...</p>
-    </div>
+      <div id="Services" class="submenu">
+        <button class="subtablink" onclick="openTab('Maintenance')">Maintenance ordinateur</button>
+        <button class="subtablink" onclick="openTab('Déblocage')">Déblocage compte Google</button>
+        <button class="subtablink" onclick="openTab('Dépannage')">Dépannage téléphone</button>
+        <button class="subtablink" onclick="openTab('AutresServices')">Autres services</button>
+      </div>
 
-    <div id="Kaspersky" class="tabcontent">
-      <h3>Kaspersky</h3>
-      <p>Contenu interactif ici...</p>
-    </div>
+      <div id="Informatique" class="submenu">
+        <button class="subtablink" onclick="openTab('Secrétariat')">Formation secrétariat</button>
+        <button class="subtablink" onclick="openTab('HTML')">HTML</button>
+        <button class="subtablink" onclick="openTab('CSS')">CSS</button>
+        <button class="subtablink" onclick="openTab('JavaScript')">JavaScript</button>
+        <button class="subtablink" onclick="openTab('Python')">Python</button>
+        <button class="subtablink" onclick="openTab('Kotlin')">Kotlin</button>
+        <button class="subtablink" onclick="openTab('Cplusplus')">C++</button>
+        <button class="subtablink" onclick="openTab('Java')">Java</button>
+      </div>
 
-    <!-- Ajoutez les autres div pour les onglets et sous-onglets ici -->
+      <div id="Assistant" class="submenu">
+        <p>Contenu de l'Assistant Bot ici...</p>
+      </div>
 
+      <div id="Kaspersky" class="tabcontent">
+        <h3>Kaspersky</h3>
+        <p>Contenu interactif ici...</p>
+      </div>
+
+      <!-- Ajoutez les autres div pour les onglets et sous-onglets ici -->
+
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>Pour plus d'informations, appelez-nous au <a href="tel:+140041531">1-400-415-31</a></p>
+        <p>Adresse email: <a href="mailto:contact@bkm-service.com">contact@bkm-service.com</a></p>
+      </div>
+    </footer>
   </div>
 
-  <footer>
-    <div class="footer-content">
-      <p>Pour plus d'informations, appelez-nous au <a href="tel:+22654641531">(+226)54641531</a></p>
-      <p>Adresse email: <a href="mailto: issiako21business@gmail.com">issiako21business@gmail.com</a></p>
-    </div>
-  </footer>
+  <button class="toggle-voice-button" onclick="toggleVoice()">Activer / Désactiver la Synthèse Vocale</button>
 
   <script>
     function openSubMenu(tabName) {
@@ -91,6 +99,42 @@
       }
       document.getElementById(tabName).style.display = "block";
     }
+
+    // Fonction pour activer / désactiver la synthèse vocale
+    var speechSynthesisEnabled = false;
+
+    function toggleVoice() {
+      speechSynthesisEnabled = !speechSynthesisEnabled;
+      var toggleButton = document.querySelector('.toggle-voice-button');
+      if (speechSynthesisEnabled) {
+        toggleButton.textContent = "Désactiver la Synthèse Vocale";
+      } else {
+        toggleButton.textContent = "Activer la Synthèse Vocale";
+      }
+    }
+
+    // Fonction pour lire à voix haute le contenu d'un élément
+    function speak(text) {
+      var synth = window.speechSynthesis;
+      var utterance = new SpeechSynthesisUtterance(text);
+      synth.speak(utterance);
+    }
+
+    // Lire à voix haute le contenu de la page au chargement
+    window.onload = function() {
+      var elements = document.querySelectorAll('h1, h2, h3, p');
+      elements.forEach(element => speak(element.textContent));
+    };
+
+    // Lire à voix haute le contenu lorsqu'un élément est cliqué
+    document.addEventListener('click', function(event) {
+      if (speechSynthesisEnabled) {
+        var target = event.target;
+        if (target.nodeName === 'BUTTON' || target.nodeName === 'A' || target.nodeName === 'INPUT') {
+          speak(target.textContent);
+        }
+      }
+    });
   </script>
 </body>
 </html>
