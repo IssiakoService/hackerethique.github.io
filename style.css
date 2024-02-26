@@ -7,73 +7,75 @@ body {
 
 .container {
   max-width: 800px;
-  margin: 20px auto; /* Ajout de marges autour du contenu */
+  margin: 20px auto; 
   padding: 20px;
 }
 
-.header-content {
+header {
   text-align: center;
-  padding: 20px 0;
+  margin-bottom: 20px;
 }
 
 h1 {
   color: #333;
   font-size: 36px;
-  text-align: center;
 }
 
 p {
   color: #666;
-  text-align: center;
 }
 
 .tabs {
-  overflow: hidden;
-  background-color: #007bff; /* Bleu */
+  display: flex;
+  justify-content: center;
+  background-color: #007bff; 
   margin-bottom: 20px;
 }
 
 .tablink {
-  float: left;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
-  background-color: #007bff; /* Bleu */
+  background-color: #007bff; 
   color: white;
+  font-size: 16px;
+  margin: 0 5px;
 }
 
 .tablink:hover {
-  background-color: #0056b3; /* Bleu foncé */
+  background-color: #0056b3; 
 }
 
 .submenu {
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .subtablink {
-  float: left;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 12px 14px;
+  padding: 10px;
   transition: 0.3s;
-  background-color: #ddd; /* Gris clair */
+  background-color: #ddd; 
   color: #333;
+  font-size: 14px;
   margin: 0 5px 5px 0;
 }
 
 .subtablink:hover {
-  background-color: #bbb; /* Gris plus foncé */
+  background-color: #bbb; 
 }
 
 .tabcontent {
   display: none;
   padding: 20px;
-  border-top: 2px solid #007bff; /* Bleu */
+  border-top: 2px solid #007bff; 
 }
 
 footer {
@@ -93,15 +95,33 @@ footer {
 
 .welcome-message {
   text-align: center;
-  margin-bottom: 40px; /* Ajout d'un espace plus grand sous le message de bienvenue */
+  margin-bottom: 40px; 
 }
 
 .welcome-message h2 {
-  color: #007bff; /* Bleu */
+  color: #007bff; 
   font-size: 24px;
 }
 
 .welcome-message p {
   color: #333;
   font-size: 18px;
+}
+
+.toggle-voice-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.toggle-voice-button:hover {
+  background-color: #0056b3; 
 }
