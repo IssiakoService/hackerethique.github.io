@@ -7,15 +7,13 @@ body {
 
 .container {
   max-width: 800px;
-  margin: 50px auto;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .header-content {
   text-align: center;
-  padding: 50px 20px;
+  padding: 50px 0;
 }
 
 h1 {
@@ -30,8 +28,6 @@ p {
 .tabs {
   overflow: hidden;
   background-color: #333;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 
 .tablink {
@@ -43,7 +39,6 @@ p {
   transition: 0.3s;
   background-color: #555;
   color: white;
-  border-top-left-radius: 10px;
 }
 
 .tablink:hover {
