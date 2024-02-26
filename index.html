@@ -7,26 +7,72 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="tabs">
-      <button class="tablink" onclick="openTab('Acheter')">Acheter</button>
-      <button class="tablink" onclick="openTab('Vendre')">Vendre</button>
-      <button class="tablink" onclick="openTab('Maintenant')">Maintenant</button>
-      <button class="tablink" onclick="openTab('Étude')">Étude</button>
-      <button class="tablink" onclick="openTab('Cyber')">Cyber</button>
-      <button class="tablink" onclick="openTab('Sécurité')">Sécurité</button>
-      <button class="tablink" onclick="openTab('Tutos')">Tutos</button>
-      <button class="tablink" onclick="openTab('Assistant')">Assistant</button>
+  <header>
+    <div class="header-content">
+      <h1>BKM Service</h1>
+      <p>Le meilleur site pour vos besoins de commerce et de maintenance</p>
     </div>
-    
+  </header>
+
+  <div class="tabs">
+    <button class="tablink" onclick="openTab('Acheter')">Acheter</button>
+    <button class="tablink" onclick="openTab('Vendre')">Vendre</button>
+    <button class="tablink" onclick="openTab('Maintenant')">Maintenant</button>
+    <button class="tablink" onclick="openTab('Étude')">Étude</button>
+    <button class="tablink" onclick="openTab('Cyber')">Cyber</button>
+    <button class="tablink" onclick="openTab('Sécurité')">Sécurité</button>
+    <button class="tablink" onclick="openTab('Tutos')">Tutos</button>
+    <button class="tablink" onclick="openTab('Assistant')">Assistant</button>
+  </div>
+
+  <div class="container">
     <div id="Acheter" class="tabcontent">
       <h3>Contenu de Acheter</h3>
       <p>Contenu interactif ici...</p>
     </div>
 
-    <!-- Ajoutez les autres onglets avec leurs contenus -->
+    <div id="Vendre" class="tabcontent">
+      <h3>Contenu de Vendre</h3>
+      <p>Contenu interactif ici...</p>
+    </div>
 
+    <div id="Maintenant" class="tabcontent">
+      <h3>Contenu de Maintenant</h3>
+      <p>Contenu interactif ici...</p>
+    </div>
+
+    <div id="Étude" class="tabcontent">
+      <h3>Contenu de Étude</h3>
+      <p>Contenu interactif ici...</p>
+    </div>
+
+    <div id="Cyber" class="tabcontent">
+      <h3>Contenu de Cyber</h3>
+      <p>Contenu interactif ici...</p>
+    </div>
+
+    <div id="Sécurité" class="tabcontent">
+      <h3>Contenu de Sécurité</h3>
+      <p>Contenu interactif ici...</p>
+    </div>
+
+    <div id="Tutos" class="tabcontent">
+      <h3>Contenu de Tutos</h3>
+      <p>Contenu interactif ici...</p>
+    </div>
+
+    <div id="Assistant" class="tabcontent">
+      <h3>Contenu de Assistant</h3>
+      <p>Contenu interactif ici...</p>
+    </div>
   </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>Pour plus d'informations, appelez-nous au <a href="tel:+140041531">1-400-415-31</a></p>
+      <p>Adresse email: <a href="mailto:contact@bkm-service.com">contact@bkm-service.com</a></p>
+    </div>
+  </footer>
 
   <script>
     function openTab(tabName) {
@@ -38,14 +84,5 @@
       document.getElementById(tabName).style.display = "block";
     }
   </script>
-  
-  <?php
-    $ip_address = $_SERVER['REMOTE_ADDR'];
-    $visitor = $_SERVER['REMOTE_HOST'];
-    $file = 'visitors.txt';
-    $visitor_data = $ip_address . ' - ' . $visitor . PHP_EOL;
-    file_put_contents($file, $visitor_data, FILE_APPEND | LOCK_EX);
-  ?>
-  
 </body>
-</html>
+  </html>
