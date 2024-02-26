@@ -13,21 +13,24 @@ body {
 
 .header-content {
   text-align: center;
-  padding: 50px 0;
+  padding: 20px 0;
 }
 
 h1 {
   color: #333;
   font-size: 36px;
+  text-align: center;
 }
 
 p {
   color: #666;
+  text-align: center;
 }
 
 .tabs {
   overflow: hidden;
   background-color: #007bff; /* Bleu */
+  margin-bottom: 20px;
 }
 
 .tablink {
@@ -82,4 +85,5 @@ footer {
 
 .footer-content {
   max-width: 800px;
-  margin
+  margin: 0 auto;
+}
