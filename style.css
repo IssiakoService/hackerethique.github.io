@@ -19,7 +19,7 @@ nav ul {
 
 nav ul li {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 40px;
     position: relative; /* Ajout d'une position relative pour le positionnement des sous-menus */
 }
 
