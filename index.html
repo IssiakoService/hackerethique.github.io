@@ -1,40 +1,102 @@
+<style>
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 30;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+    position: relative; /* Ajout d'une position relative pour le positionnement des sous-menus */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 40px rgba(0, 0, 0, 0.2);
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+</style>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BKM Service</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>BKM Service</h1>
-        <nav>
+        <h1><center>BKM Service</center></h1>
+     <center>   <nav>
             <ul>
                 <li><a href="#boutique">Boutique</a>
-                    <ul>
+                
+                    <ul class="submenu">
+                           <li></li>  <li></li>
                         <li><a href="#">Téléphones</a></li>
+                           <l
                         <li><a href="#">Ordinateurs</a></li>
-                        <li><a href="#">Logiciels Kaspersky</a></li>
+                        <li><a href="#">Kaspersky</a></li>
                         <li><a href="#">Autres articles</a></li>
                     </ul>
                 </li>
                 <li><a href="#etude">Étude</a>
-                    <ul>
+                    <ul class="submenu">
+                      <li></li>  <li></li>
                         <li><a href="#">Exposés</a></li>
                         <li><a href="#">Cours</a></li>
                         <li><a href="#">Exercices</a></li>
                     </ul>
                 </li>
                 <li><a href="#informatique">Informatique</a>
-                    <ul>
+                    <ul class="submenu">
+                    <li></li>
+                     <li></li>
+                        <li><a href="#"
                         <li><a href="#">Formations en informatique</a></li>
                         <li><a href="#">Programmation</a></li>
                     </ul>
                 </li>
                 <li><a href="#depot-retrait">Dépôt et Retrait</a></li>
                 <li><a href="#assistance">Assistance</a>
-                    <ul>
+                    <ul class="submenu">
                         <li><a href="#">Robot Assistant</a></li>
                         <li><a href="#">À propos de nous</a></li>
                         <li><a href="#">Service client</a></li>
@@ -42,15 +104,31 @@
                 </li>
             </ul>
         </nav>
+        </center>
     </header>
     <main>
-        <div id="content">
-            <!-- Contenu de chaque section -->
-        </div>
+        <!-- Contenu de chaque section -->
+        <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #333; text-align: justify;">
+    Issiako Service offre une gamme variée de services pour répondre à tous vos besoins. Que vous recherchiez une assistance informatique, des formations en ligne ou des solutions de dépôt et retrait, nous sommes là pour vous aider. Notre équipe expérimentée est dédiée à fournir des services de haute qualité et une assistance personnalisée pour garantir votre satisfaction. Contactez-nous dès aujourd'hui pour découvrir comment Issiako Service peut vous aider à atteindre vos objectifs.
+</p>
     </main>
     <footer>
-        <p>&copy; 2024 BKM Service. Tous droits réservés. | Email: contact@bkmservice.com | Téléphone: +123456789</p>
+        <p>&copy; 2024 BKM Service. Tous droits réservés. | Email: contact@bkmservice.com | Téléphone: +123456789
+        </p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const menuItems = document.querySelectorAll("nav ul li");
+
+    menuItems.forEach(item => {
+        item.addEventListener("click", function(event) {
+            const submenu = this.querySelector(".submenu");
+            if (submenu) {
+                submenu.classList.toggle("show");
+                event.preventDefault();
+            }
+        });
+    });
+}); </script>
 </body>
 </html>
