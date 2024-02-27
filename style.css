@@ -1,26 +1,17 @@
 /* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-}
-
 nav ul {
     list-style-type: none;
-    margin: 10;
+    margin: 0;
     padding: 0;
 }
 
 nav ul li {
     display: inline-block;
-    margin-right: 40px;
-    position: relative; /* Ajout d'une position relative pour le positionnement des sous-menus */
+    margin-right: 20px; /* Ajuste l'espacement horizontal entre chaque onglet */
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* Supprime la marge de droite pour le dernier élément du menu */
 }
 
 nav ul li a {
