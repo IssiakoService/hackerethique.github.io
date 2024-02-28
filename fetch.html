@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Récupérer le contenu d'une page web</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .content {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Récupérer le contenu d'une page web</h1>
+    <button onclick="fetchAndDisplay()">Récupérer le contenu</button>
+    <div class="content" id="content"></div>
+  </div>
+
+  <script>
+    function fetchAndDisplay() {
+      fetch('https://bkmservice.netlify.app')
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const bodyContent = doc.querySelector('body').innerHTML;
+          document.getElementById('content').innerHTML = bodyContent;
+        })
+        .catch(error => {
+          document.getElementById('content').innerHTML = 'Erreur : Impossible de récupérer le contenu.';
+          console.error('Erreur :', error);
+        });
+    }
+  </script>
+</body>
+</html>
