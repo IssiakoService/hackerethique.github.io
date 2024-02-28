@@ -34,7 +34,7 @@
         .then(html => {
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
-          const bodyContent = doc.querySelector('body').innerHTML;
+          const bodyContent = doc.querySelector('html').innerHTML;
           document.getElementById('content').innerHTML = bodyContent;
         })
         .catch(error => {
