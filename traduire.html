@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traducteur</title>
+</head>
+<body>
+    <h1>Traducteur de phrases en français</h1>
+    <label for="phrase">Entrez une phrase à traduire :</label>
+    <input type="text" id="phrase">
+    <button onclick="traduire()">Traduire</button>
+    <p id="resultat"></p>
+
+    <script>
+        function traduire() {
+            var phrase = document.getElementById("phrase").value;
+            var apiUrl = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(phrase) + "&langpair=en|fr";
+
+            fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if(data && data.responseData && data.responseData.translatedText) {
+                    document.getElementById("resultat").textContent = "Traduction en français : " + data.responseData.translatedText;
+                } else {
+                    document.getElementById("resultat").textContent = "Erreur lors de la traduction";
+                }
+            })
+            .catch(error => {
+                console.error("Erreur lors de la traduction:", error);
+                document.getElementById("resultat").textContent = "Erreur lors de la traduction";
+            });
+        }
+    </script>
+</body>
+</html>
