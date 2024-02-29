@@ -85,21 +85,26 @@
   }
 
   async function getBotMessage(userMessage) {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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' // Remplacez par votre clé API
-      },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: [
-          { role: 'user', content: userMessage }
-        ]
-      })
-    });
-    const data = await response.json();
-    return data.choices[0].message.content;
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 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' // Remplacez par votre clé API
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            { role: 'user', content: userMessage }
+          ]
+        })
+      });
+      const data = await response.json();
+      return data.choices[0].message.content;
+    } catch (error) {
+      console.error('Erreur lors de la requête vers l\'API de ChatGPT :', error);
+      return 'Désolé, une erreur s\'est produite.';
+    }
   }
 
   function appendMessage(role, content) {
