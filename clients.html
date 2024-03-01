@@ -1,56 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requête Fetch avec JavaScript</title>
+    <title>Exemple de requête AJAX</title>
 </head>
 <body>
-    <h1>Envoyer une requête</h1>
-    <label for="idInput">ID:</label>
-    <input type="text" id="idInput"><br>
-
-    <label for="lieuInput">Lieu:</label>
-    <input type="text" id="lieuInput"><br>
-
-    <label for="requeteInput">Requête:</label>
-    <input type="text" id="requeteInput"><br>
-
-    <button onclick="sendData()">Envoyer</button>
-
-    <div id="responseContainer"></div>
+    <h1>Envoyer une requête AJAX vers PHP</h1>
+    
+    <textarea id="message" placeholder="Entrez votre message"></textarea>
+    <button id="envoyer">Envoyer</button>
+    
+    <div id="reponse"></div>
 
     <script>
-        function sendData() {
-            // Récupérer les valeurs des champs ID, lieu et requête
-            var id = document.getElementById("idInput").value;
-            var lieu = document.getElementById("lieuInput").value;
-            var requete = document.getElementById("requeteInput").value;
-
-            // Créer un objet contenant les données à envoyer
+        document.getElementById('envoyer').addEventListener('click', function() {
+            var message = document.getElementById('message').value;
             var data = {
-                id: id,
-                lieu: lieu,
-                requete: requete
+                message: message
             };
 
-            // Envoyer une requête fetch au serveur PHP
-            fetch('http://issiakobuz.onlinewebshop.net/bkmservice/serveur.php', {
+            var requestOptions = {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.text())
-            .then(data => {
-                // Afficher la réponse renvoyée par le serveur dans la div responseContainer
-                document.getElementById('responseContainer').innerHTML = data;
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
+                body: JSON.stringify(data)
+            };
+
+            fetch('http://issiakobuz.onlinewebshop.net/bkmservice/serveur.php', requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('reponse').innerText = data.message;
+                })
+                .catch(error => console.log('Erreur :', error));
+        });
     </script>
 </body>
 </html>
