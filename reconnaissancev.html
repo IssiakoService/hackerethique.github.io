@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reconnaissance vocale</title>
+</head>
+<body>
+    <button onclick="startDictation()">Démarrer la reconnaissance vocale</button>
+    <div id="output"></div>
+
+    <script>
+        var output = document.getElementById('output');
+
+        function startDictation() {
+            if ('webkitSpeechRecognition' in window) {
+                var recognition = new webkitSpeechRecognition();
+                recognition.lang = 'fr-FR';
+
+                recognition.onresult = function(event) {
+                    var interim_transcript = '';
+                    var final_transcript = '';
+
+                    for (var i = event.resultIndex; i < event.results.length; ++i) {
+                        if (event.results[i].isFinal) {
+                            final_transcript += event.results[i][0].transcript;
+                        } else {
+                            interim_transcript += event.results[i][0].transcript;
+                        }
+                    }
+
+                    output.innerHTML = final_transcript;
+                };
+
+                recognition.start();
+            }
+        }
+    </script>
+</body>
+</html>
