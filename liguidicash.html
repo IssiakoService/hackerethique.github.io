@@ -1,0 +1,56 @@
+
+<script>
+var settings = {
+  "url": "https://app.ligdicash.com/pay/v01/redirect/checkout-invoice/create",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Apikey": "MP74ERZLAGW6GTV4G",
+    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF9hcHAiOiIxNjUxMiIsImlkX2Fib25uZSI6MjMwMjQ1LCJkYXRlY3JlYXRpb25fYXBwIjoiMjAyNC0wMy0wNiAwNzoxNjozOCJ9.hFKKb9t07NAmVntqznhJp4ZAIzbreR7w0hkXCBPUZQU",
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "commande": {
+      "invoice": {
+        "items": [
+          {
+            "name": "Bic",
+            "description": "Produit scolaire ",
+            "quantity": 1,
+            "unit_price": 100,
+            "total_price": 100
+          }
+        ],
+        "total_amount": 100,
+        "devise": "XOF",
+        "description": "Achat de fournitures ",
+        "customer": "Numéro du client",
+        "customer_firstname": "Nom du client",
+        "customer_lastname": "Prénom du client",
+        "customer_email": "email@du.client",
+        "external_id": "",
+        "otp": ""
+      },
+      "store": {
+        "name": "BKM SERVICE ",
+        "website_url": "https://bkmservice.netlify.app"
+      },
+      "actions": {
+        "cancel_url": "http://localhost",
+        "return_url": "http://localhost",
+        "callback_url": "http://localhost"
+      },
+      "custom_data": {
+        "transaction_id": "ID_de_votre_transaction",
+        "logfile": "Nom_du_fichier_de_log",
+        "developpeur": "BOKOUM ISSIAKA"
+      }
+    }
+  }),
+};
+
+$.ajax(settings).done(function (response) {
+  alert(response);
+});
+</script>
