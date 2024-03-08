@@ -29,7 +29,7 @@
 
   <script>
     function fetchAndDisplay() {
-      fetch('https://lonab.bf/programme-pmub')
+      fetch('https://lonab.bf')
         .then(response => response.text())
         .then(html => {
           document.getElementById('content').innerHTML = html;
