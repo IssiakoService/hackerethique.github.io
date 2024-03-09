@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication JavaScript - PHP</title>
+</head>
+<body>
+    <button id="fetchData">Récupérer les données</button>
+    <div id="response"></div>
+
+    <script>
+      document.getElementById("fetchData").addEventListener("click", function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://createurdecv.atwebpages.com/serveur.php", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                document.getElementById("response").innerHTML = xhr.responseText;
+            } else {
+                console.error("Erreur lors de la requête: " + xhr.status);
+            }
+        }
+    };
+    xhr.send();
+});
+    </script>
+</body>
+</html>
