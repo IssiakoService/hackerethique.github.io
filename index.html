@@ -134,7 +134,9 @@ footer {
                         <li><a href="#">Service client</a></li>
                     </ul>
                 </li>
+        
             </ul>
+         <li><a onclick="page(pconnect)" href="#">se connecter</a>
         </nav>
         </center>
     </header>
@@ -221,7 +223,10 @@ footer {
     </p>
 </body>
 </html>`
-   
+   const pconnect = `<script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="Issiako_bot" data-size="large" data-onauth="onTelegramAuth(user)" data-request-access="write"></script>
+<script type="text/javascript">
+  function onTelegramAuth(user) {
+    alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')') }</script>`
    
 document.addEventListener("DOMContentLoaded", function() {
     const menuItems = document.querySelectorAll("nav ul li");
