@@ -97,28 +97,28 @@ footer {
                 
                     <ul class="submenu">
                            <li></li>  <li></li>
-                        <li><a href="#">Téléphones</a></li>
+                        <li><a onclick="page(ptelephone)" href="#">Téléphones</a></li>
                            <l
-                        <li><a href="#">Ordinateurs</a></li>
-                        <li><a href="#">Kaspersky</a></li>
-                        <li><a href="#">Autres articles</a></li>
+                        <li><a  onclick="page(pordinateur)"href="#">Ordinateurs</a></li>
+                        <li><a onclick="page(pkaspersky)" href="#">Kaspersky</a></li>
+                        <li><a onclick="page(pautre)" href="#">Autres articles</a></li>
                     </ul>
                 </li>
                 <li><a href="#etude">Étude</a>
                     <ul class="submenu">
                       <li></li>  <li></li>
-                        <li><a href="#">Exposés</a></li>
-                        <li><a href="#">Cours</a></li>
-                        <li><a href="#">Exercices</a></li>
+                        <li><a onclick="page(pexpose)" href="#">Exposés</a></li>
+                        <li><a onclick="page(pcours)"href="#">Cours</a></li>
+                        <li><a onclick="page(pexercice)" href="#">Exercices</a></li>
                     </ul>
                 </li>
-                <li><a href="#informatique">Informatique</a>
+                <li><a  href="#informatique">Informatique</a>
                     <ul class="submenu">
                     <li></li>
                      <li></li>
                         <li><a href="#"
-                        <li><a href="#">Formations en informatique</a></li>
-                        <li><a href="#">Programmation</a></li>
+                        <li><a onclick="page(pformation)" href="#">Formations en informatique</a></li>
+                        <li><a onclick="page(programmation)" href="#">Programmation</a></li>
                     </ul>
                 </li>
                 <li><a href="#depot-retrait">Dépôt et Retrait</a></li>
@@ -134,15 +134,23 @@ footer {
         </center>
     </header>
     <main>
+    <div>
+        
+  
         <!-- Contenu de chaque section -->
-        <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #333; text-align: justify;">
+        <p id="" style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #333; text-align: justify;">
+        <div id="page">
+        <div class="content" style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #333; text-align: justify;" id="content">
     Issiako Service offre une gamme variée de services pour répondre à tous vos besoins. Que vous recherchiez une assistance informatique, des formations en ligne ou des solutions de dépôt et retrait, nous sommes là pour vous aider. Notre équipe expérimentée est dédiée à fournir des services de haute qualité et une assistance personnalisée pour garantir votre satisfaction. Contactez-nous dès aujourd'hui pour découvrir comment Issiako Service peut vous aider à atteindre vos objectifs.
- <a href="9782332541093.pdf" download>Cliquez ici pour télécharger</a></p>
+
+    
+</p>
+
 <div class="service">
     <a href="lien_vers_commerce.html">
         <img src="Commerce.jpg" alt="Commerce" class="service-image">
         <h2>Commerce</h2>
-        <p>Description du service de commerce.</p>
+        <p>Faite vos achats chez nous a des prix abordables, Téléphone, Ordinateur, Kaspersky Anti-virus et bien d'autres. Livraison gratuite<br> Cliquez pour voir plus......... .</p>
     </a>
 </div>
 
@@ -150,7 +158,7 @@ footer {
     <a href="lien_vers_etude.html">
         <img src="Etudes.jpg" alt="Étude" class="service-image">
         <h2>Étude</h2>
-        <p>Description du service d'étude.</p>
+        <p>Etudier grace a notre plateforme depuis l'onglet Etides , Retrouver des cours en ligne de toutes les niveaux scolaire, Faite vos exposé facilement et retrouver des exercices pour mesurer votre niveau<br>Cliquez ici pour voir plus.........</p>
     </a>
 </div>
 
@@ -158,7 +166,7 @@ footer {
     <a href="lien_vers_formation.html">
         <img src="Formation.jpg" alt="Formation" class="service-image">
         <h2>Formation</h2>
-        <p>Description du service de formation.</p>
+        <p>Formation en informatique Bureautique (Word, Excel, PowerPoint et Internet) ; Documents pdf de formation bien détaillé ; Tutoriel et Formation en ligne .</p>
     </a>
 </div>
 
@@ -166,7 +174,7 @@ footer {
     <a href="lien_vers_maintenance.html">
         <img src="Maintenance.jpg" alt="Maintenance et Réparation" class="service-image">
         <h2>Maintenance et Réparation</h2>
-        <p>Description du service de maintenance et réparation.</p>
+        <p> Gardez vos machine en bonne état, Debloquage, reprogrammation du système, Installation d'anti virus, Sécurisation du système et bien d'autres.. <br> Cliquez ici pour voir plus......</p>
     </a>
 </div>
 
@@ -174,15 +182,27 @@ footer {
     <a href="lien_vers_paris.html">
         <img src="Paris.jpg" alt="Paris Sportifs" class="service-image">
         <h2>Paris Sportifs</h2>
-        <p>Description du service de paris sportifs.</p>
+        <p>Ne perdez plus vôtre argent grace a nos coupons et astuces sur, dépôt et retrait rapide.<br> cliquez pour voir plus......</p>
     </a>
 </div>
+    </div>
     </main>
     <footer>
-        <p>&copy; 2024 BKM Service. Tous droits réservés. | Email: contact@bkmservice.com | Téléphone: +123456789
+        <p id="">&copy; 2024 BKM Service. Tous droits réservés. | Email: contact@bkmservice.com | Téléphone: +123456789
         </p>
+            
     </footer>
     <script>
+    const ptelephone = `<b>Bienvenue sur la page de vente de téléphone</b> `
+    const pordinateur = `<b>Bienvenue sur la page de vente d\'ordinateur</b>` 
+    const pkaspersky = `<b>Bienvenue sur la page de vente Kaspersky</b>`  
+    const pautre = `<b>Bienvenue sur la page de vente d\'Autres Articles</b>` 
+    const pexpose = `<b>Bienvenue sur la page de vente de Rédaction d\'exposé</b>`
+    const pcours = `<b>Bienvenue sur la page de cours</b>`  
+    const pexercice = `<b>Bienvenue sur la page d\'exercice</b>` 
+   const pformation = `<b>Bienvenue sur la page de formation en informatique<b>` 
+   const programmation = `<b>Bienvenue sur la page de formation en programmation</b>`
+   
 document.addEventListener("DOMContentLoaded", function() {
     const menuItems = document.querySelectorAll("nav ul li");
 
@@ -195,7 +215,14 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-}); </script>
-    <script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="65e6579888272cd08c025bba" async></script>
+});
+
+function page(choix){
+                document.getElementById('content').innerHTML = choix;
+      
+      }
+    
+      
+</script>
 </body>
-</html>
+    </html>
