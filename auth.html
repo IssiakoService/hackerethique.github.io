@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Authentification par Empreinte Biométrique</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  #output {
+    margin-top: 20px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Authentification par Empreinte Biométrique</h1>
+  <button id="registerBtn">Enregistrer Empreinte</button>
+  <button id="loginBtn">Se Connecter par Empreinte</button>
+  <div id="output"></div>
+</div>
+
+<script>
+document.getElementById('registerBtn').addEventListener('click', function() {
+  navigator.credentials.create({
+    publicKey: {
+      authenticatorSelection: {
+        authenticatorAttachment: 'platform',
+        userVerification: 'required'
+      },
+      timeout: 60000,
+      user: {
+        id: new Uint8Array(16),
+        name: 'john.doe@example.com',
+        displayName: 'John Doe'
+      },
+      pubKeyCredParams: [
+        { type: 'public-key', alg: -7 }
+      ]
+    }
+  }).then(function(credential) {
+    document.getElementById('output').textContent = 'Empreinte enregistrée avec succès';
+    console.log('Empreinte enregistrée avec succès:', credential);
+  }).catch(function(error) {
+    document.getElementById('output').textContent = 'Erreur lors de l\'enregistrement de l\'empreinte';
+    console.error('Erreur lors de l\'enregistrement de l\'empreinte:', error);
+  });
+});
+
+document.getElementById('loginBtn').addEventListener('click', function() {
+  navigator.credentials.get({
+    publicKey: {
+      authenticatorSelection: {
+        authenticatorAttachment: 'platform',
+        userVerification: 'required'
+      },
+      timeout: 60000,
+      user: {
+        id: new Uint8Array(16),
+        name: 'john.doe@example.com',
+        displayName: 'John Doe'
+      },
+      pubKeyCredParams: [
+        { type: 'public-key', alg: -7 }
+      ]
+    }
+  }).then(function(assertion) {
+    document.getElementById('output').textContent = 'Authentification par empreinte réussie';
+    console.log('Authentification par empreinte réussie:', assertion);
+  }).catch(function(error) {
+    document.getElementById('output').textContent = 'Erreur lors de l\'authentification par empreinte';
+    console.error('Erreur lors de l\'authentification par empreinte:', error);
+  });
+});
+</script>
+</body>
+</html>
