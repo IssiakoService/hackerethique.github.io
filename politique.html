@@ -54,7 +54,7 @@ h1 {
 <body>
 
 <div class="container">
-    <h1>Politique de Confidentialité</h1>
+    <h1>BKM SERVICE : Politique de Confidentialité</h1>
     <div class="policy-text">
         <h2>Collecte des Informations</h2>
         <p>Nous collectons des informations lorsque vous vous inscrivez sur notre site, passez une commande, vous abonnez à notre newsletter, répondez à un sondage ou remplissez un formulaire.</p>
@@ -82,7 +82,9 @@ h1 {
 <script>
 function acceptPrivacyPolicy() {
     alert("Merci d'avoir accepté notre Politique de Confidentialité !");
-    // Ici, vous pouvez ajouter du code pour enregistrer la décision de l'utilisateur dans votre système
+    var destinationUrl = "https://bkmservice.netlify.app";
+    window.location.href = destinationUrl;
+    
 }
 
 document.getElementById("accept-checkbox").addEventListener("change", function() {
