@@ -160,7 +160,10 @@ footer {
                 </li>
         
             </ul>
-         <li><a onclick="page(pconnect)" href="#">se connecter</a>
+         <li><fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
         </nav>
         </center>
     </header>
