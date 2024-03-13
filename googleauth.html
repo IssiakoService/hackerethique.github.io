@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OAuth Google Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #357AE8;
+    }
+  </style>
+</head>
+<body>
+  <h1>OAuth Google Example</h1>
+  <button id="loginButton">Login with Google</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginButton = document.getElementById('loginButton');
+      const clientID = '989209346452-qn6n0m1ptfcuof81jobirqp159l56gm1.apps.googleusercontent.com';
+      const redirectURI = encodeURIComponent('http://https://bkmservice.netlify.app');
+
+      loginButton.addEventListener('click', function() {
+        // Redirige l'utilisateur vers la page d'authentification Google
+        window.location.href = `https://accounts.google.com/o/oauth2/auth?redirect_uri=${redirectURI}&response_type=token&client_id=${clientID}&scope=email%20profile&approval_prompt=force&state=123456`;
+      });
+    });
+  </script>
+</body>
+</html>
