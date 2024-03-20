@@ -1,50 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fingerprint Authentication</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        #output {
-            margin-bottom: 20px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Exemple Calcul avec Requête AJAX</title>
 </head>
 <body>
-    <div id="output"></div>
-    <button id="authenticateBtn">Authenticate with Fingerprint</button>
+    <input type="text" id="nombre1" placeholder="Nombre 1">
+    <input type="text" id="nombre2" placeholder="Nombre 2">
+    <button onclick="envoyerRequete()">Calculer</button>
 
     <script>
-        const output = document.getElementById('output');
-        const authenticateBtn = document.getElementById('authenticateBtn');
+        function envoyerRequete() {
+            // Récupérer les valeurs des nombres
+            var nombre1 = document.getElementById("nombre1").value;
+            var nombre2 = document.getElementById("nombre2").value;
 
-        authenticateBtn.addEventListener('click', async () => {
-            try {
-                const credential = await navigator.credentials.get({
-                    publicKey: {
-                        authenticatorSelection: {
-                            authenticatorAttachment: 'platform',
-                            userVerification: 'required'
-                        }
-                    }
-                });
-
-                output.textContent = 'Authentication successful!';
-            } catch (error) {
-                console.error('Error:', error);
-                output.textContent = 'Error: ' + error.message;
-            }
-        });
+            // Envoyer la requête
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://createurdecv.atwebpages.com/receveur.php?nombre1=' + nombre1 + '&nombre2=' + nombre2, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    // Traiter la réponse ici
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send();
+        }
     </script>
 </body>
 </html>
