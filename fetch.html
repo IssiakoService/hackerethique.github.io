@@ -3,29 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemple Calcul avec Requête AJAX</title>
+    <title>Envoyer des données à PHP via JavaScript</title>
 </head>
 <body>
-    <input type="text" id="nombre1" placeholder="Nombre 1">
-    <input type="text" id="nombre2" placeholder="Nombre 2">
-    <button onclick="envoyerRequete()">Calculer</button>
+    <h1>Formulaire d'envoi de données à PHP</h1>
+    <form id="myForm">
+        <label for="nom">Nom du fichier :</label>
+        <input type="text" id="nom" name="nom"><br><br>
+        <label for="contenu">Contenu du fichier :</label><br>
+        <textarea id="contenu" name="contenu" rows="4" cols="50"></textarea><br><br>
+        <button type="button" onclick="envoyerDonnees()">Envoyer</button>
+    </form>
 
     <script>
-        function envoyerRequete() {
-            // Récupérer les valeurs des nombres
-            var nombre1 = document.getElementById("nombre1").value;
-            var nombre2 = document.getElementById("nombre2").value;
-
-            // Envoyer la requête
+        function envoyerDonnees() {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://createurdecv.atwebpages.com/receveur.php?nombre1=' + nombre1 + '&nombre2=' + nombre2, true);
+            xhr.open("POST", "http://createurdecv.atwebpages.com/receveur.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    // Traiter la réponse ici
+                if (xhr.readyState === 4 && xhr.status === 200) {
                     console.log(xhr.responseText);
+                    alert(xhr.responseText); // Afficher la réponse du serveur
                 }
             };
-            xhr.send();
+
+            var nom = document.getElementById("nom").value;
+            var contenu = document.getElementById("contenu").value;
+            var data = "nom=" + encodeURIComponent(nom) + "&contenu=" + encodeURIComponent(contenu);
+
+            xhr.send(data);
         }
     </script>
 </body>
