@@ -1,3 +1,4 @@
+<script>
 // L'objet JSON initial
 var objetJSON = '{"IDU":["yuiiigf","hukjhhhjk"]}';
 
@@ -9,9 +10,8 @@ objetJS.IDU.push("nouvelle_valeur");
 
 // Convertir l'objet JavaScript en chaîne JSON mise à jour
 var nouvelObjetJSON = JSON.stringify(objetJS);
-<script> // Ajouter une nouvelle valeur à la clé 
-objetJS.IDU.push(1711115823075_y3doj3pl); 
-<script>
+// Ajouter une nouvelle valeur à la clé 
+objetJS.IDU.push(1711115823075_y3doj3pl);
   // Créer la phrase pour toutes les valeurs de l'objet JSON
 var phrase = "";
 for (var i = 0; i < objetJS.ID.length; i++) {
@@ -20,3 +20,4 @@ for (var i = 0; i < objetJS.ID.length; i++) {
 
 // Afficher la phrase dans la div avec l'id "phrase"
 document.getElementById("phrase").innerHTML = phrase;
+  </script>
