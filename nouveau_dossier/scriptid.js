@@ -21,3 +21,5 @@ for (var i = 0; i < objetJS.ID.length; i++) {
 // Afficher la phrase dans la div avec l'id "phrase"
 document.getElementById("phrase").innerHTML = phrase;
   </script>
+<script> // Ajouter une nouvelle valeur à la clé 
+objetJS.IDU.push(1711125280790_vk6680yp); <script>
