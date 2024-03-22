@@ -14,6 +14,22 @@
     <button onclick="effectuerCalcul()">Calculer</button>
     <div id="resultat"></div>
 
-    <script src="script.js"></script>
+    <script>
+        function effectuerCalcul() {
+    var nombre1 = document.getElementById("nombre1").value;
+    var nombre2 = document.getElementById("nombre2").value;
+
+    var url = "http://issiakobuz.onlinewebshop.net/calcul.php?nombre1=" + nombre1 + "&nombre2=" + nombre2;
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("resultat").innerHTML = this.responseText;
+        }
+    };
+    xhr.open("GET", url, true);
+    xhr.send();
+        }
+    </script>
 </body>
 </html>
