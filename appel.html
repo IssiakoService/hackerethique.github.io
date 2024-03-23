@@ -1,33 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Appel Téléphonique</title>
-  <script>
-    function passerAppel() {
-      // Vérifier si l'API Telephony est prise en charge par le navigateur
-      if ('telephony' in navigator) {
-        // Demander l'autorisation de passer l'appel
-        navigator.telephony.dial('54641531')
-          .then(call => {
-            console.log('Appel en cours:', call);
-            alert('Appel en cours...');
-          })
-          .catch(error => {
-            console.error('Erreur lors de l\'appel:', error);
-            alert('Erreur lors de l\'appel. Veuillez réessayer.');
-          });
-      } else {
-        console.error("L'API Telephony n'est pas prise en charge par ce navigateur.");
-        alert("L'API Telephony n'est pas prise en charge par ce navigateur.");
-      }
+fetch('https://you.com/search?q=who+are+you&tbm=youchat&cfr=chat')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  </script>
-</head>
-<body>
-  <h1>Appel Téléphonique</h1>
-  <p>Cliquez sur le bouton ci-dessous pour passer un appel téléphonique :</p>
-  <button onclick="passerAppel()">Appeler le 54641531</button>
-</body>
-</html>
+    return response.text();
+  })
+  .then(data => {
+    // Utilisez 'data' pour manipuler la réponse récupérée
+    alert(data);
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+    alert('There was a problem with the fetch operation:', error);
+  });
