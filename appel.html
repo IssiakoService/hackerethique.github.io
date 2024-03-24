@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,124 +9,81 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f7f7f7;
+      background-color: #f0f0f0;
     }
     .container {
-      max-width: 500px;
+      max-width: 800px;
       margin: 20px auto;
       padding: 20px;
       background-color: #fff;
-      border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .chat-container {
-      overflow-y: scroll;
-      max-height: 300px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    .chat {
       margin-bottom: 20px;
+      overflow-y: scroll;
+      max-height: 400px; /* Adjust as needed */
     }
     .message {
-      background-color: #f2f2f2;
-      padding: 10px;
-      border-radius: 5px;
       margin-bottom: 10px;
     }
     .user-message {
-      text-align: right;
-      background-color: #3f51b5;
-      color: #fff;
+      background-color: #e6f2ff;
+      padding: 10px;
+      border-radius: 10px;
     }
     .bot-message {
-      text-align: left;
-      background-color: #4caf50;
-      color: #fff;
-    }
-    .input-container {
-      display: flex;
-      justify-content: space-between;
-    }
-    .input-container input {
-      flex: 1;
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    .input-container button {
-      padding: 8px 15px;
-      margin-left: 10px;
-      border: none;
-      border-radius: 5px;
-      background-color: #4caf50;
-      color: #fff;
-      cursor: pointer;
+      background-color: #ccffcc;
+      padding: 10px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>BKM SERVICE Chatbot</h1>
-    <div class="chat-container" id="chat-container"></div>
-    <div class="input-container">
-      <input type="text" id="user-input" placeholder="Entrez votre message...">
-      <button onclick="sendMessage()">Envoyer</button>
-    </div>
+    <div class="chat" id="chat"></div>
+    <input type="text" id="userInput" placeholder="Type your message here..." style="width: calc(100% - 20px);">
+    <button onclick="sendMessage()">Send</button>
   </div>
 
   <script>
-    const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
-    const chatContainer = document.getElementById('chat-container');
-    
-    function addMessageToChat(message, isUserMessage) {
+    const chatDiv = document.getElementById('chat');
+    const userInput = document.getElementById('userInput');
+
+    function addMessage(message, sender) {
       const messageDiv = document.createElement('div');
       messageDiv.classList.add('message');
-      if (isUserMessage) {
+      if (sender === 'user') {
         messageDiv.classList.add('user-message');
       } else {
         messageDiv.classList.add('bot-message');
       }
       messageDiv.innerText = message;
-      chatContainer.appendChild(messageDiv);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      chatDiv.appendChild(messageDiv);
+      chatDiv.scrollTop = chatDiv.scrollHeight;
     }
 
     function sendMessage() {
-      const userInput = document.getElementById('user-input').value;
-      if (userInput.trim() === '') return;
-      
-      addMessageToChat(userInput, true);
-
-      const requestBody = {
-        formality: 'default',
-        max_tokens: 2048,
-        model: 'chat-sophos-1',
-        n: 1,
-        source_lang: 'auto',
-        target_lang: 'auto',
-        temperature: 0.65,
-        text: userInput
-      };
-
-      fetch('https://api.textcortex.com/v1/texts/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify(requestBody)
-      })
-      .then(response => response.json())
-      .then(data => {
-        const botResponse = data.data.outputs[0].text;
-        addMessageToChat(botResponse, false);
-      })
-      .catch(error => {
-        console.error('Erreur lors de la requête API :', error);
-        addMessageToChat('Désolé, une erreur s\'est produite lors du traitement de votre demande.', false);
-      });
-
-      document.getElementById('user-input').value = '';
+      const message = userInput.value.trim();
+      if (message !== '') {
+        addMessage(message, 'user');
+        userInput.value = ''; // Clear input field after sending
+        fetch('BKM_SERVICE_API_ENDPOINT', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ message: message })
+        })
+        .then(response => response.json())
+        .then(data => {
+          const botResponse = data.response; // Adjust based on the actual response structure
+          addMessage(botResponse, 'bot');
+        })
+        .catch(error => {
+          console.error('Error sending message:', error);
+        });
+      }
     }
   </script>
 </body>
