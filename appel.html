@@ -4,83 +4,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BKM SERVICE Chatbot</title>
-  <<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f7f7;
-  }
-  .container {
-    max-width: 800px; /* Adjusted max-width for wider container */
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  .chat-container {
-    overflow-y: scroll;
-    max-height: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    width: 100%; /* Make the chat container wider */
-  }
-  .message {
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  .user-message {
-    text-align: right;
-    background-color: #3f51b5;
-    color: #fff;
-  }
-  .bot-message {
-    text-align: left;
-    background-color: #4caf50;
-    color: #fff;
-  }
-  .input-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Center align items vertically */
-  }
-  .input-container input, .input-container select {
-    flex: 1;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-right: 10px;
-  }
-  .input-container button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4caf50;
-    color: #fff;
-    cursor: pointer;
-  }
-</style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    .container {
+      width: 100%; /* Full-width container */
+      padding: 20px;
+    }
+    .chat-container {
+      overflow-y: scroll;
+      max-height: 300px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      background-color: #fff;
+    }
+    .message {
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .user-message {
+      text-align: right;
+      background-color: #3f51b5;
+      color: #fff;
+    }
+    .bot-message {
+      text-align: left;
+      background-color: #4caf50;
+      color: #fff;
+    }
+    .input-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .input-container input, .input-container select {
+      flex: 1;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+    .input-container button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: #fff;
+      cursor: pointer;
+    }
+    .loader {
+      border: 4px solid #f3f3f3; /* Light grey */
+      border-top: 4px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto; /* Center the loader */
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>BKM SERVICE Chatbot</h1>
+    <h1>BKM SERVICE Chatbot générateur d' Exposé</h1>
     <div class="chat-container" id="chat-container"></div>
     <div class="input-container">
-      <input type="hidden" id="title" value="exposé"placeholder=""><br>
+      <input type="hidden" id="title" value="exposé" placeholder=""><br>
       <input type="text" id="context" placeholder="Sujet de votre exposé"><br>
       <input type="text" id="keywords" placeholder="Plan de votre Exposé (séparés par des virgules)">
       <button onclick="generateBlogContent()">Générer contenu</button>
+      <div class="loader" id="loader" style="display: none;"></div>
     </div>
   </div>
 
   <script>
     const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
     const chatContainer = document.getElementById('chat-container');
+    const loader = document.getElementById('loader');
 
     function addMessageToChat(message, isUserMessage) {
       const messageDiv = document.createElement('div');
@@ -113,6 +125,8 @@
         title: title
       };
 
+      loader.style.display = 'block'; // Show loader
+      
       fetch('https://api.textcortex.com/v1/texts/blogs', {
         method: 'POST',
         headers: {
@@ -123,6 +137,7 @@
       })
       .then(response => response.json())
       .then(data => {
+        loader.style.display = 'none'; // Hide loader
         const botResponse = data.data.outputs[0].text;
         addMessageToChat(` ${title}`, true);
         addMessageToChat(`Sujet: ${context}`, true);
@@ -131,6 +146,7 @@
         addMessageToChat(botResponse, false);
       })
       .catch(error => {
+        loader.style.display = 'none'; // Hide loader
         console.error('Erreur lors de la requête API :', error);
         addMessageToChat('Désolé, une erreur s\'est produite lors du traitement de votre demande.', false);
       });
