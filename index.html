@@ -6,7 +6,7 @@
     display: inline-block;
     margin: 20px;
     text-align: center;
-}
+} 
 
 .service a {
     text-decoration: none;
@@ -357,7 +357,70 @@ footer {
       <div class="loader" id="loader" style="display: none;"></div>
     </div>
     <div class="chat-container" id="chat-container"></div>
-  </div>`
+  </div>
+  \<script\>
+    const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
+    const chatContainer = document.getElementById('chat-container');
+    const loader = document.getElementById('loader');
+
+    function addMessageToChat(message, isUserMessage) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message');
+      if (isUserMessage) {
+        messageDiv.classList.add('user-message');
+      } else {
+        messageDiv.classList.add('bot-message');
+      }
+      messageDiv.innerText = message;
+      chatContainer.appendChild(messageDiv);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function generateBlogContent() {
+      const title = document.getElementById('title').value;
+      const context = document.getElementById('context').value;
+      const keywords = document.getElementById('keywords').value.split(',').map(keyword => keyword.trim());
+      
+      const requestBody = {
+        context: context,
+        formality: 'default',
+        keywords: keywords,
+        max_tokens: 2048,
+        model: 'chat-sophos-1',
+        n: 1,
+        source_lang: 'auto',
+        target_lang: 'auto',
+        temperature: 0.65,
+        title: title
+      };
+
+      loader.style.display = 'block'; // Show loader
+      
+      fetch('https://api.textcortex.com/v1/texts/blogs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify(requestBody)
+      })
+      .then(response => response.json())
+      .then(data => {
+        loader.style.display = 'none'; // Hide loader
+        const botResponse = data.data.outputs[0].text;
+        addMessageToChat(`EXPOSE`, true);
+        addMessageToChat(`Sujet: ${context}`, true);
+        addMessageToChat(`Plan : ${keywords.join(', ')}`, true);
+        addMessageToChat('Contenu généré par BKM Service :', true);
+        addMessageToChat(botResponse, false);
+      })
+      .catch(error => {
+        loader.style.display = 'none'; // Hide loader
+        console.error('Erreur lors de la requête API :', error);
+        addMessageToChat('Désolé, une erreur s\'est produite lors du traitement de votre demande.', false);
+      });
+    }
+           \</script\> `
     const pcours = `<b>Bienvenue sur la page de cours</b>`  
     const pexercice = `<b>Bienvenue sur la page d\'exercice</b>` 
    const pformation = `<b>Bienvenue sur la page de formation en informatique<b>` 
@@ -429,67 +492,5 @@ function page(choix){
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
             </script>
-           <script>
-    const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
-    const chatContainer = document.getElementById('chat-container');
-    const loader = document.getElementById('loader');
-
-    function addMessageToChat(message, isUserMessage) {
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('message');
-      if (isUserMessage) {
-        messageDiv.classList.add('user-message');
-      } else {
-        messageDiv.classList.add('bot-message');
-      }
-      messageDiv.innerText = message;
-      chatContainer.appendChild(messageDiv);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-
-    function generateBlogContent() {
-      const title = document.getElementById('title').value;
-      const context = document.getElementById('context').value;
-      const keywords = document.getElementById('keywords').value.split(',').map(keyword => keyword.trim());
-      
-      const requestBody = {
-        context: context,
-        formality: 'default',
-        keywords: keywords,
-        max_tokens: 2048,
-        model: 'chat-sophos-1',
-        n: 1,
-        source_lang: 'auto',
-        target_lang: 'auto',
-        temperature: 0.65,
-        title: title
-      };
-
-      loader.style.display = 'block'; // Show loader
-      
-      fetch('https://api.textcortex.com/v1/texts/blogs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify(requestBody)
-      })
-      .then(response => response.json())
-      .then(data => {
-        loader.style.display = 'none'; // Hide loader
-        const botResponse = data.data.outputs[0].text;
-        addMessageToChat(`EXPOSE`, true);
-        addMessageToChat(`Sujet: ${context}`, true);
-        addMessageToChat(`Plan : ${keywords.join(', ')}`, true);
-        addMessageToChat('Contenu généré par BKM Service :', true);
-        addMessageToChat(botResponse, false);
-      })
-      .catch(error => {
-        loader.style.display = 'none'; // Hide loader
-        console.error('Erreur lors de la requête API :', error);
-        addMessageToChat('Désolé, une erreur s\'est produite lors du traitement de votre demande.', false);
-      });
-    }
-           </script> </body>
+            </body>
     </html>
