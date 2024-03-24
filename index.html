@@ -109,6 +109,66 @@ footer {
   opacity: 1; /* Bouton visible */
   transform: translateX(0); /* Apparaît depuis la gauche */
         }
+        .container {
+      width: 100%; /* Full-width container */
+      padding: 20px;
+    }
+    .chat-container {
+      overflow-y: scroll;
+      max-height: 300px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      background-color: #fff;
+    }
+    .message {
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .user-message {
+      text-align: right;
+      background-color: #3f51b5;
+      color: #fff;
+    }
+    .bot-message {
+      text-align: left;
+      background-color: #4caf50;
+      color: #fff;
+    }
+    .input-container {
+      margin-bottom: 20px;
+    }
+    .input-container input, .input-container select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    .input-container button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: #fff;
+      cursor: pointer;
+    }
+    .loader {
+      border: 4px solid #f3f3f3; /* Light grey */
+      border-top: 4px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto; /* Center the loader */
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 </style>
 <!DOCTYPE html>
 <html lang="fr">
@@ -281,7 +341,23 @@ footer {
     const pordinateur = `<b>Bienvenue sur la page de vente d\'ordinateur</b>` 
     const pkaspersky = `<b>Bienvenue sur la page de vente Kaspersky</b>`  
     const pautre = `<b>Bienvenue sur la page de vente d\'Autres Articles</b>` 
-    const pexpose = `<b>Bienvenue sur la page de vente de Rédaction d\'exposé</b>`
+    const pexpose = `<b>Bienvenue sur la page de vente de Rédaction d\'exposé</b>   <div class="container">
+    <h1>Générateur d' Exposé de BKM Service</h1>
+    <div class="input-container">
+      <input type="hidden" id="title" value="Fait un exposé bien développé détaillé et très long exposé" placeholder=""><br>
+    </div>
+    <div class="input-container">
+      <input type="text" id="context" placeholder="Sujet de votre exposé"><br>
+    </div>
+    <div class="input-container">
+      <input type="text" id="keywords" placeholder="Plan de votre Exposé (séparés par des virgules)">
+    </div>
+    <div class="input-container">
+      <button onclick="generateBlogContent()">Générer contenu</button>
+      <div class="loader" id="loader" style="display: none;"></div>
+    </div>
+    <div class="chat-container" id="chat-container"></div>
+  </div>`
     const pcours = `<b>Bienvenue sur la page de cours</b>`  
     const pexercice = `<b>Bienvenue sur la page d\'exercice</b>` 
    const pformation = `<b>Bienvenue sur la page de formation en informatique<b>` 
@@ -330,6 +406,7 @@ function page(choix){
   function onTelegramAuth(user) {
     alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
   }
+    
 </script>
             <script>
   window.fbAsyncInit = function() {
@@ -352,5 +429,67 @@ function page(choix){
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
             </script>
-</body>
+           <script>
+    const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
+    const chatContainer = document.getElementById('chat-container');
+    const loader = document.getElementById('loader');
+
+    function addMessageToChat(message, isUserMessage) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message');
+      if (isUserMessage) {
+        messageDiv.classList.add('user-message');
+      } else {
+        messageDiv.classList.add('bot-message');
+      }
+      messageDiv.innerText = message;
+      chatContainer.appendChild(messageDiv);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function generateBlogContent() {
+      const title = document.getElementById('title').value;
+      const context = document.getElementById('context').value;
+      const keywords = document.getElementById('keywords').value.split(',').map(keyword => keyword.trim());
+      
+      const requestBody = {
+        context: context,
+        formality: 'default',
+        keywords: keywords,
+        max_tokens: 2048,
+        model: 'chat-sophos-1',
+        n: 1,
+        source_lang: 'auto',
+        target_lang: 'auto',
+        temperature: 0.65,
+        title: title
+      };
+
+      loader.style.display = 'block'; // Show loader
+      
+      fetch('https://api.textcortex.com/v1/texts/blogs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify(requestBody)
+      })
+      .then(response => response.json())
+      .then(data => {
+        loader.style.display = 'none'; // Hide loader
+        const botResponse = data.data.outputs[0].text;
+        addMessageToChat(`EXPOSE`, true);
+        addMessageToChat(`Sujet: ${context}`, true);
+        addMessageToChat(`Plan : ${keywords.join(', ')}`, true);
+        addMessageToChat('Contenu généré par BKM Service :', true);
+        addMessageToChat(botResponse, false);
+      })
+      .catch(error => {
+        loader.style.display = 'none'; // Hide loader
+        console.error('Erreur lors de la requête API :', error);
+        addMessageToChat('Désolé, une erreur s\'est produite lors du traitement de votre demande.', false);
+      });
+    }
+           </script> </body>
     </html>
