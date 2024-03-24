@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,81 +9,129 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background-color: #f7f7f7;
     }
     .container {
-      max-width: 800px;
+      max-width: 500px;
       margin: 20px auto;
       padding: 20px;
       background-color: #fff;
+      border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .chat {
-      margin-bottom: 20px;
+    .chat-container {
       overflow-y: scroll;
-      max-height: 400px; /* Adjust as needed */
+      max-height: 300px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
     }
     .message {
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
       margin-bottom: 10px;
     }
     .user-message {
-      background-color: #e6f2ff;
-      padding: 10px;
-      border-radius: 10px;
+      text-align: right;
+      background-color: #3f51b5;
+      color: #fff;
     }
     .bot-message {
-      background-color: #ccffcc;
-      padding: 10px;
-      border-radius: 10px;
+      text-align: left;
+      background-color: #4caf50;
+      color: #fff;
+    }
+    .input-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .input-container input, .input-container select {
+      flex: 1;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+    .input-container button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: #fff;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>BKM SERVICE Chatbot</h1>
-    <div class="chat" id="chat"></div>
-    <input type="text" id="userInput" placeholder="Type your message here..." style="width: calc(100% - 20px);">
-    <button onclick="sendMessage()">Send</button>
+    <div class="chat-container" id="chat-container"></div>
+    <div class="input-container">
+      <input type="text" id="title" placeholder="Titre du blog">
+      <input type="text" id="context" placeholder="Sujet du blog">
+      <input type="text" id="keywords" placeholder="Mots-clés du blog (séparés par des virgules)">
+      <button onclick="generateBlogContent()">Générer contenu</button>
+    </div>
   </div>
 
   <script>
-    const chatDiv = document.getElementById('chat');
-    const userInput = document.getElementById('userInput');
+    const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
+    const chatContainer = document.getElementById('chat-container');
 
-    function addMessage(message, sender) {
+    function addMessageToChat(message, isUserMessage) {
       const messageDiv = document.createElement('div');
       messageDiv.classList.add('message');
-      if (sender === 'user') {
+      if (isUserMessage) {
         messageDiv.classList.add('user-message');
       } else {
         messageDiv.classList.add('bot-message');
       }
       messageDiv.innerText = message;
-      chatDiv.appendChild(messageDiv);
-      chatDiv.scrollTop = chatDiv.scrollHeight;
+      chatContainer.appendChild(messageDiv);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    function sendMessage() {
-      const message = userInput.value.trim();
-      if (message !== '') {
-        addMessage(message, 'user');
-        userInput.value = ''; // Clear input field after sending
-        fetch('BKM_SERVICE_API_ENDPOINT', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ message: message })
-        })
-        .then(response => response.json())
-        .then(data => {
-          const botResponse = data.response; // Adjust based on the actual response structure
-          addMessage(botResponse, 'bot');
-        })
-        .catch(error => {
-          console.error('Error sending message:', error);
-        });
-      }
+    function generateBlogContent() {
+      const title = document.getElementById('title').value;
+      const context = document.getElementById('context').value;
+      const keywords = document.getElementById('keywords').value.split(',').map(keyword => keyword.trim());
+      
+      const requestBody = {
+        context: context,
+        formality: 'default',
+        keywords: keywords,
+        max_tokens: 2048,
+        model: 'chat-sophos-1',
+        n: 1,
+        source_lang: 'auto',
+        target_lang: 'auto',
+        temperature: 0.65,
+        title: title
+      };
+
+      fetch('https://api.textcortex.com/v1/texts/blogs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify(requestBody)
+      })
+      .then(response => response.json())
+      .then(data => {
+        const botResponse = data.data.outputs[0].text;
+        addMessageToChat(`Titre du blog : ${title}`, true);
+        addMessageToChat(`Sujet du blog : ${context}`, true);
+        addMessageToChat(`Mots-clés du blog : ${keywords.join(', ')}`, true);
+        addMessageToChat('Contenu généré :', true);
+        addMessageToChat(botResponse, false);
+      })
+      .catch(error => {
+        console.error('Erreur lors de la requête API :', error);
+        addMessageToChat('Désolé, une erreur s\'est produite lors du traitement de votre demande.', false);
+      });
     }
   </script>
 </body>
