@@ -1,3 +1,4 @@
+Api de ai 
 <script>
 const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
 const textToAnalyze = 'Le texte que vous souhaitez analyser';
@@ -12,8 +13,8 @@ fetch('https://api.textcortex.com/v1/analyse', {
 })
 .then(response => response.json())
 .then(data => {
-  console.log(data); // Traitement de la réponse de l'API
+  alert(data); // Traitement de la réponse de l'API
 })
 .catch(error => {
-  console.error('Erreur lors de la requête API :', error);
+  alert('Erreur lors de la requête API :', error);
 });</script>
