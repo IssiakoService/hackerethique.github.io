@@ -69,9 +69,9 @@
     <h1>BKM SERVICE Chatbot</h1>
     <div class="chat-container" id="chat-container"></div>
     <div class="input-container">
-      <input type="text" id="title" placeholder="Titre du blog">
-      <input type="text" id="context" placeholder="Sujet du blog">
-      <input type="text" id="keywords" placeholder="Mots-clés du blog (séparés par des virgules)">
+      <input type="hidden" id="title" value="exposé"placeholder=""><br>
+      <input type="text" id="context" placeholder="Sujet de votre exposé"><br>
+      <input type="text" id="keywords" placeholder="Plan de votre Exposé (séparés par des virgules)">
       <button onclick="generateBlogContent()">Générer contenu</button>
     </div>
   </div>
@@ -122,9 +122,9 @@
       .then(response => response.json())
       .then(data => {
         const botResponse = data.data.outputs[0].text;
-        addMessageToChat(`Titre du blog : ${title}`, true);
-        addMessageToChat(`Sujet du blog : ${context}`, true);
-        addMessageToChat(`Mots-clés du blog : ${keywords.join(', ')}`, true);
+        addMessageToChat(` ${title}`, true);
+        addMessageToChat(`Sujet: ${context}`, true);
+        addMessageToChat(`Plan : ${keywords.join(', ')}`, true);
         addMessageToChat('Contenu généré :', true);
         addMessageToChat(botResponse, false);
       })
