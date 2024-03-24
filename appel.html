@@ -1,30 +1,85 @@
-Api de ai 
-<script>
- const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
-const textToComplete = 'Bonjour';
-const requestBody = {
-  formality: 'default',
-  max_tokens: 2048,
-  model: 'chat-sophos-1',
-  n: 1,
-  source_lang: 'auto',
-  target_lang: 'auto',
-  temperature: 0.65,
-  text: textToComplete
-};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réponse de l'API TextCortex</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .output {
+      margin-bottom: 20px;
+    }
+    .output-index {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Réponse de l'API TextCortex</h1>
+    <div id="response"></div>
+  </div>
 
-fetch('https://api.textcortex.com/v1/texts/completions', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${apiKey}`
-  },
-  body: JSON.stringify(requestBody)
-})
-.then(response => response.json())
-.then(data => {
-  alert(data); // Traitement de la réponse de l'API
-})
-.catch(error => {
-  alert('Erreur lors de la requête API :', error);
-});</script>
+  <script>
+    const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
+    const textToComplete = 'Le texte que vous souhaitez compléter';
+    const requestBody = {
+      formality: 'default',
+      max_tokens: 2048,
+      model: 'chat-sophos-1',
+      n: 1,
+      source_lang: 'auto',
+      target_lang: 'auto',
+      temperature: 0.65,
+      text: textToComplete
+    };
+
+    fetch('https://api.textcortex.com/v1/texts/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+      const responseDiv = document.getElementById('response');
+      const output = data.data.outputs[0];
+      const remainingCredits = data.data.remaining_credits;
+      const status = data.status;
+
+      const outputDiv = document.createElement('div');
+      outputDiv.classList.add('output');
+      outputDiv.innerHTML = `
+        <p><span class="output-index">Index:</span> ${output.index}</p>
+        <p><span class="output-text">Texte:</span> ${output.text}</p>
+      `;
+      responseDiv.appendChild(outputDiv);
+
+      const creditsParagraph = document.createElement('p');
+      creditsParagraph.innerHTML = `<span class="remaining-credits">Crédits restants:</span> ${remainingCredits}`;
+      responseDiv.appendChild(creditsParagraph);
+
+      const statusParagraph = document.createElement('p');
+      statusParagraph.innerHTML = `<span class="status">Statut:</span> ${status}`;
+      responseDiv.appendChild(statusParagraph);
+    })
+    .catch(error => {
+      console.error('Erreur lors de la requête API :', error);
+    });
+  </script>
+</body>
+</html>
