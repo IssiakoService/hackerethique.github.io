@@ -169,6 +169,11 @@ footer {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+    iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+    }
 </style>
 <!DOCTYPE html>
 <html lang="fr">
@@ -341,23 +346,7 @@ footer {
     const pordinateur = `<b>Bienvenue sur la page de vente d\'ordinateur</b>` 
     const pkaspersky = `<b>Bienvenue sur la page de vente Kaspersky</b>`  
     const pautre = `<b>Bienvenue sur la page de vente d\'Autres Articles</b>` 
-    const pexpose = `<b>Bienvenue sur la page de vente de Rédaction d\'exposé</b>   <div class="container">
-    <h1>Générateur d' Exposé de BKM Service</h1>
-    <div class="input-container">
-      <input type="hidden" id="title" value="Fait un exposé bien développé détaillé et très long exposé" placeholder=""><br>
-    </div>
-    <div class="input-container">
-      <input type="text" id="context" placeholder="Sujet de votre exposé"><br>
-    </div>
-    <div class="input-container">
-      <input type="text" id="keywords" placeholder="Plan de votre Exposé (séparés par des virgules)">
-    </div>
-    <div class="input-container">
-      <button onclick="generateBlogContent()">Générer contenu</button>
-      <div class="loader" id="loader" style="display: none;"></div>
-    </div>
-    <div class="chat-container" id="chat-container"></div>
-  </div> `
+    const pexpose = `<b>Bienvenue sur la page de Rédaction d\'exposé</b>    <iframe src="exposé.html" frameborder="0" scrolling="no"></iframe>  `
     const pcours = `<b>Bienvenue sur la page de cours</b>`  
     const pexercice = `<b>Bienvenue sur la page d\'exercice</b>` 
    const pformation = `<b>Bienvenue sur la page de formation en informatique<b>` 
@@ -372,7 +361,7 @@ footer {
         <a href="http://issiakobuz.onlinewebshop.net/lonabeiframe.php" download>👉cliquer ici pour accéder a la page de téléchargement des programmes </a>
     </p>
     <p>
-        Ces programmes fournissent des informations détaillées sur les jeux disponibles, les règles, les dates de tirage et d'autres détails importants pour les participants. Profitez des jeux de Lonabe et bonne chance !
+        Ces programmes fournissent des <iframe src="URL_DE_TON_CONTENU" frameborder="0" scrolling="no"></iframe> informations détaillées sur les jeux disponibles, les règles, les dates de tirage et d'autres détails importants pour les participants. Profitez des jeux de Lonabe et bonne chance !
     </p>
 </body>
 </html>`
