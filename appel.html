@@ -1,19 +1,19 @@
-
 <script>
-  fetch('https://you.com/search?q=who+are+you&tbm=youchat&cfr=chat')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.text();
-  })
-  .then(data => {
-    // Utilisez 'data' pour manipuler la réponse récupérée
-    alert(data);
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-    alert('There was a problem with the fetch operation:', error);
-  });
-</script>
+const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
+const textToAnalyze = 'Le texte que vous souhaitez analyser';
 
+fetch('https://api.textcortex.com/v1/analyse', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${apiKey}`
+  },
+  body: JSON.stringify({ text: textToAnalyze })
+})
+.then(response => response.json())
+.then(data => {
+  console.log(data); // Traitement de la réponse de l'API
+})
+.catch(error => {
+  console.error('Erreur lors de la requête API :', error);
+});</script>
