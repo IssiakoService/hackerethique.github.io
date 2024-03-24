@@ -1,20 +1,30 @@
 Api de ai 
 <script>
-const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
-const textToAnalyze = 'Le texte que vous souhaitez analyser';
+ const apiKey = 'gAAAAABmADpn8RYRtoU6Xd-0Ki9X3LGIm2PfOlwiweD3tpTDGrIlwwXZKiRLKJeWuSMxvNG6y56TDhGpPA91E1dDBAI6M7dW2cniu2Fo5gVgzWsqbGxo_xGZc-uh_0kbpKc4NSpTr85Z';
+const textToComplete = 'Le texte que vous souhaitez compléter';
+const requestBody = {
+  formality: 'default',
+  max_tokens: 2048,
+  model: 'chat-sophos-1',
+  n: 1,
+  source_lang: 'auto',
+  target_lang: 'auto',
+  temperature: 0.65,
+  text: textToComplete
+};
 
-fetch('https://api.textcortex.com/v1/analyse', {
+fetch('https://api.textcortex.com/v1/texts/completions', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${apiKey}`
   },
-  body: JSON.stringify({ text: textToAnalyze })
+  body: JSON.stringify(requestBody)
 })
 .then(response => response.json())
 .then(data => {
-  alert(data); // Traitement de la réponse de l'API
+  console.log(data); // Traitement de la réponse de l'API
 })
 .catch(error => {
-  alert('Erreur lors de la requête API :', error);
+  console.error('Erreur lors de la requête API :', error);
 });</script>
