@@ -399,8 +399,8 @@ footer {
       fetch('https://api.textcortex.com/v1/texts/blogs', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
+          'Content-Type': \'application/json\',
+          'Authorization': \`Bearer ${apiKey}\`
         },
         body: JSON.stringify(requestBody)
       })
@@ -409,8 +409,8 @@ footer {
         loader.style.display = 'none'; // Hide loader
         const botResponse = data.data.outputs[0].text;
         addMessageToChat(`EXPOSE`, true);
-        addMessageToChat(`Sujet: ${context}`, true);
-        addMessageToChat(`Plan : ${keywords.join(', ')}`, true);
+        addMessageToChat(\`Sujet: ${context}\`, true);
+        addMessageToChat(\`Plan : ${keywords.join(\', \')}\`, true);
         addMessageToChat('Contenu généré par BKM Service :', true);
         addMessageToChat(botResponse, false);
       })
