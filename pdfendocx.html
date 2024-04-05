@@ -84,6 +84,7 @@
 
 </div>
 <div class="loader" id="loader" style="display: none;">Convertion....</div>
+  <div id="finconvert" > </div>
 <script>
   function startConversion() {
     // Afficher le loader pendant le processus de conversion
@@ -116,6 +117,10 @@
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
+      var finconvert = document.getElementById("finconvert");
+
+// Ajoutez du texte à la div
+finconvert.innerText = `Votre fichier a été converti avec succès, cliquez ici pour télécharger 👉<a href=\"${url}\">Télécharger le fichier Word</a>`;
     })
     .catch(error => {
       console.error('Erreur:', error);
