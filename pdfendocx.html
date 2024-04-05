@@ -114,6 +114,7 @@
       var a = document.createElement('a');
       a.href = url;
       a.download = 'converted.docx';
+      a.target = "_blank";
       a.textContent = "Cliquez ici 👉 pour Télécharger";
       document.body.appendChild(a);
       a.click();
