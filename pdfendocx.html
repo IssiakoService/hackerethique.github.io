@@ -119,13 +119,14 @@
       a.click();
       window.URL.revokeObjectURL(url);
       var finconvert = document.getElementById("finconvert");
-      finconvert.appendChild(a)
-                          
-                           
 
 // Ajoutez du texte à la div
-var finconvert = `Votre fichier a été converti avec succès, cliquez ici pour télécharger 👉<a href=\"${url}\">Télécharger le fichier Word</a>`;
-    })
+var lien = document.createElement("a");
+lien.href = url;
+lien.textContent = "Cliquez ici 👉 pour Télécharger";
+
+// Ajouter le lien à la div
+finconvert.appendChild(lien); })
     .catch(error => {
       console.error('Erreur:', error);
       alert('Une erreur est survenue lors de la conversion.');
