@@ -114,13 +114,17 @@
       var a = document.createElement('a');
       a.href = url;
       a.download = 'converted.docx';
+      
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
       var finconvert = document.getElementById("finconvert");
+      finconvert.appendChild(a)
+                          
+                           
 
 // Ajoutez du texte à la div
-finconvert = `Votre fichier a été converti avec succès, cliquez ici pour télécharger 👉<a href=\"${url}\">Télécharger le fichier Word</a>`;
+var finconvert = `Votre fichier a été converti avec succès, cliquez ici pour télécharger 👉<a href=\"${url}\">Télécharger le fichier Word</a>`;
     })
     .catch(error => {
       console.error('Erreur:', error);
