@@ -114,19 +114,17 @@
       var a = document.createElement('a');
       a.href = url;
       a.download = 'converted.docx';
-      
+      a.textContent = "Cliquez ici 👉 pour Télécharger";
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
       var finconvert = document.getElementById("finconvert");
 
 // Ajoutez du texte à la div
-var lien = document.createElement("a");
-lien.href = url;
-lien.textContent = "Cliquez ici 👉 pour Télécharger";
+
 
 // Ajouter le lien à la div
-finconvert.appendChild(lien); })
+finconvert.appendChild(a); })
     .catch(error => {
       console.error('Erreur:', error);
       alert('Une erreur est survenue lors de la conversion.');
