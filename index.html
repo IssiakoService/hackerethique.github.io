@@ -288,6 +288,7 @@ footer {
 </fb:login-button>
         </nav>
         </center>
+        <div id="bienvenue"> </div>
     </header>
     <main>
     <div>
@@ -540,5 +541,33 @@ document.head.appendChild(script);
   !function(){var t=window,e=document,a=function(){var t=e.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://bot.airdroid.com/widget/chatinsight-widget.js",t.onload=function(){new ChatInsightWidget({sid:'LHdXSLVOw59Y1-ddj1MZgQ', iFrameSid:'LHdXSLVOw59Y1-ddj1MZgQ'})};var a=e.getElementsByTagName("script")[0];a.parentNode.insertBefore(t,a)};"complete"===document.readyState?a():t.attachEvent?t.attachEvent("onload",a):t.addEventListener("load",a,!1)}();
             </script>
             
+<script>
+// Définir une fonction à exécuter
+function maBoucle() {
+let chatOutput = document.getElementById('bienvenue');
+chatOutput.innerHTML =''
+  simulateTyping("Bienvenue chez BKM Service 😉 !")
+}
+
+// Appeler la fonction toutes les 5 secondes
+setInterval(maBoucle, 2000); // 5000 millisecondes = 5 secondes
+
+
+function simulateTyping(message) {
+      let words = message.split(' ');
+      let i = 0;
+      let chatOutput = document.getElementById('bienvenue');
+
+      function typeNextWord() {
+        if (i < words.length) {
+          chatOutput.innerHTML+= words[i] + ' ';
+          i++;
+          setTimeout(typeNextWord, 400); // Adjust the delay as needed
+        }
+      }
+
+      typeNextWord();
+    }
+</script>
             </body>
     </html>
