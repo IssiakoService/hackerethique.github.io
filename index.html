@@ -287,8 +287,9 @@ footer {
   onlogin="checkLoginState();">
 </fb:login-button>
         </nav>
+         <div id="bienvenue"> </div>
         </center>
-        <div id="bienvenue"> </div>
+        
     </header>
     <main>
     <div>
@@ -542,15 +543,19 @@ document.head.appendChild(script);
             </script>
             
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Code à exécuter une fois que le DOM est entièrement chargé
+  simulateTyping("Bienvenue chez BKM Service!")
+});
 // Définir une fonction à exécuter
 function maBoucle() {
 let chatOutput = document.getElementById('bienvenue');
 chatOutput.innerHTML =''
-  simulateTyping("Bienvenue chez BKM Service 😉 !")
+  simulateTyping("Bienvenue chez BKM Service  !")
 }
 
 // Appeler la fonction toutes les 5 secondes
-setInterval(maBoucle, 2000); // 5000 millisecondes = 5 secondes
+setInterval(maBoucle, 7000); // 5000 millisecondes = 5 secondes
 
 
 function simulateTyping(message) {
@@ -562,7 +567,7 @@ function simulateTyping(message) {
         if (i < words.length) {
           chatOutput.innerHTML+= words[i] + ' ';
           i++;
-          setTimeout(typeNextWord, 400); // Adjust the delay as needed
+          setTimeout(typeNextWord, 800); // Adjust the delay as needed
         }
       }
 
