@@ -3,40 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Création de compte avec WebAuthn</title>
+  <title>Authentification par Empreinte Digitale</title>
   <style>
-    /* Styles CSS */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #status {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Création de compte avec WebAuthn</h1>
-    <button id="registerBtn">Créer un compte</button>
+    <h1>Authentification par Empreinte Digitale</h1>
+    <button id="createBtn">Créer une nouvelle authentification</button>
     <p id="status"></p>
   </div>
   <script>
-    document.getElementById('registerBtn').addEventListener('click', function() {
+    document.getElementById('createBtn').addEventListener('click', function() {
       if (window.PublicKeyCredential) {
-        navigator.credentials.create({ publicKey: { 
-          challenge: new Uint8Array([0, 1, 2, 3]), 
-          rp: { name: 'Mon Service' },
-          user: { id: new Uint8Array([0, 1, 2, 3]), name: 'Utilisateur' },
-          pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
-          timeout: 60000,
-          excludeCredentials: [],
-          authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required' },
-          attestation: 'direct'
-        }})
+        navigator.credentials.create({ publicKey: { challenge: new Uint8Array([0, 1, 2, 3]) } })
           .then(function(credential) {
-            // Envoyer le credential au serveur pour stockage
-            document.getElementById('status').innerText = 'Compte créé avec succès!';
+            // Traiter les nouvelles informations d'authentification créées
+            document.getElementById('status').innerText = 'Nouvelle authentification créée!';
           })
           .catch(function(err) {
             console.error(err);
-            document.getElementById('status').innerText = 'Erreur lors de la création du compte';
+            document.getElementById('status').innerText = 'Erreur lors de la création de l\'authentification';
           });
       } else {
-        document.getElementById('status').innerText = 'Votre navigateur ne prend pas en charge WebAuthn.';
+        document.getElementById('status').innerText = 'Votre navigateur ne prend pas en charge l\'authentification par empreinte digitale.';
       }
     });
   </script>
