@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Création de compte avec WebAuthn</title>
+  <style>
+    /* Styles CSS */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Création de compte avec WebAuthn</h1>
+    <button id="registerBtn">Créer un compte</button>
+    <p id="status"></p>
+  </div>
+  <script>
+    document.getElementById('registerBtn').addEventListener('click', function() {
+      if (window.PublicKeyCredential) {
+        navigator.credentials.create({ publicKey: { 
+          challenge: new Uint8Array([0, 1, 2, 3]), 
+          rp: { name: 'Mon Service' },
+          user: { id: new Uint8Array([0, 1, 2, 3]), name: 'Utilisateur' },
+          pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
+          timeout: 60000,
+          excludeCredentials: [],
+          authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required' },
+          attestation: 'direct'
+        }})
+          .then(function(credential) {
+            // Envoyer le credential au serveur pour stockage
+            document.getElementById('status').innerText = 'Compte créé avec succès!';
+          })
+          .catch(function(err) {
+            console.error(err);
+            document.getElementById('status').innerText = 'Erreur lors de la création du compte';
+          });
+      } else {
+        document.getElementById('status').innerText = 'Votre navigateur ne prend pas en charge WebAuthn.';
+      }
+    });
+  </script>
+</body>
+</html>
