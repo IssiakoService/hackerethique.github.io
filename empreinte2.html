@@ -40,13 +40,13 @@ async function createCredential() {
 
     // Vérifier si la création de la clé a réussi
     if (credential) {
-      console.log("Clé d'authentification créée avec succès:", credential);
+      alert("Clé d'authentification créée avec succès:", credential);
       // Traitement supplémentaire ici (par exemple, envoyer la clé au serveur)
     } else {
-      console.error("Erreur lors de la création de la clé d'authentification");
+      alert("Erreur lors de la création de la clé d'authentification");
     }
   } catch (error) {
-    console.error("Erreur lors de la création de la clé d'authentification:", error);
+    alert("Erreur lors de la création de la clé d'authentification:", error);
   }
 }
 
