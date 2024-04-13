@@ -1,65 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Authentification par Empreinte Digitale</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    #status {
-      margin-top: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Créer une clé d'authentification</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Authentification par Empreinte Digitale</h1>
-    <button id="createBtn">Créer une nouvelle authentification</button>
-    <p id="status"></p>
-  </div>
-  <script>
-    document.getElementById('createBtn').addEventListener('click', function() {
-      if (window.PublicKeyCredential) {
-        navigator.credentials.create({ publicKey: { challenge: new Uint8Array([0, 1, 2, 3]) } })
-          .then(function(credential) {
-            // Traiter les nouvelles informations d'authentification créées
-            document.getElementById('status').innerText = 'Nouvelle authentification créée!';
-          })
-          .catch(function(err) {
-            console.error(err);
-            document.getElementById('status').innerText = 'Erreur lors de la création de l\'authentification';
-          });
-      } else {
-        document.getElementById('status').innerText = 'Votre navigateur ne prend pas en charge l\'authentification par empreinte digitale.';
-      }
+<h1>Créer une clé d'authentification</h1>
+
+<script>
+// Fonction pour créer une nouvelle clé d'authentification
+async function createCredential() {
+  try {
+    // Demander au navigateur de créer une nouvelle clé
+    const credential = await navigator.credentials.create({
+      publicKey: {
+        challenge: new Uint8Array(32), // Défi aléatoire (à générer côté serveur)
+        rp: {
+          name: "Exemple de site",
+          id: "example.com",
+        },
+        user: {
+          id: new Uint8Array(16), // Identifiant utilisateur unique (à générer côté serveur)
+          name: "john.doe@example.com",
+          displayName: "John Doe",
+        },
+        pubKeyCredParams: [
+          { type: "public-key", alg: -7 }, // ECDSA avec courbes P-256 et SHA-256
+        ],
+        authenticatorSelection: {
+          authenticatorAttachment: "platform", // Authentificateur intégré ou attaché
+          requireResidentKey: false, // Pas de clé résidente requise
+          userVerification: "preferred", // Authentification utilisateur préférée
+        },
+        timeout: 60000, // Délai d'attente de 60 secondes
+        attestation: "none", // Pas d'attestation
+      },
     });
-  </script>
+
+    // Vérifier si la création de la clé a réussi
+    if (credential) {
+      console.log("Clé d'authentification créée avec succès:", credential);
+      // Traitement supplémentaire ici (par exemple, envoyer la clé au serveur)
+    } else {
+      console.error("Erreur lors de la création de la clé d'authentification");
+    }
+  } catch (error) {
+    console.error("Erreur lors de la création de la clé d'authentification:", error);
+  }
+}
+
+// Appeler la fonction lors du chargement de la page
+createCredential();
+</script>
 </body>
 </html>
