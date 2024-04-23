@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Communication avec PHP via Fetch</title>
+</head>
+<body>
+  <button id="fetchButton">Cliquez ici pour récupérer des données depuis PHP</button>
+  <div id="output"></div>
+
+  <script>
+    document.getElementById('fetchButton').addEventListener('click', function() {
+      fetch('http://issiakobuz.onlinewebshop.net/fet.php')
+        .then(response => response.text()) // supposons que le script PHP renvoie du texte
+        .then(data => {
+          // Afficher les données retournées par le script PHP
+          document.getElementById('output').textContent = data;
+          alert(data)
+        })
+        .catch(error => {
+          // Gestion des erreurs
+          console.error('Erreur :', error);
+        });
+    });
+  </script>
+</body>
+</html>
