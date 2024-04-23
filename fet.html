@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Communication avec PHP via Fetch</title>
+  <title>Calculatrice PHP</title>
 </head>
 <body>
-  <button id="fetchButton">Cliquez ici pour récupérer des données depuis PHP</button>
-  <div id="output"></div>
+  <input type="text" id="nombre1" placeholder="Premier nombre">
+  <input type="text" id="nombre2" placeholder="Deuxième nombre">
+  <button id="calculer">Calculer</button>
+  <div id="resultat"></div>
 
   <script>
-    document.getElementById('fetchButton').addEventListener('click', function() {
+    document.getElementById('calculer').addEventListener('click', function() {
+
+      
       fetch('http://issiakobuz.onlinewebshop.net/fet.php')
-        .then(response => response.text()) // supposons que le script PHP renvoie du texte
+        .then(response => response.text())
         .then(data => {
-          // Afficher les données retournées par le script PHP
-          document.getElementById('output').textContent = data;
+          document.getElementById('resultat').textContent = 'Résultat : ' + data;
           alert(data)
         })
         .catch(error => {
-          // Gestion des erreurs
-          console.error('Erreur :', error);
+          alert('Erreur :', error);
         });
     });
   </script>
