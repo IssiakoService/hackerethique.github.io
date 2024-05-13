@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur d'images</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #generatedImage img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 0.8em;
+    }
+
+    .services {
+      margin-top: 30px;
+    }
+
+    .services p {
+      margin-bottom: 10px;
+    }
+
+    .spinner-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 5px solid #ccc;
+      border-top-color: #4CAF50;
+      animation: spin 1s infinite linear;
+      display: none;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Générateur d'images de BKM✅</h1>
+    <form id="imageForm">
+      <label for="description">Entrez ici la description de l'image, elle sera generer en moins de 30seconde:</label>
+      <textarea  id="description" name="description" rows="4" cols="50"></textarea><br><br>
+      <div class="spinner-container" id="spinnerContainer">
+        <div class="spinner" id="spinner"></div>
+      </div>
+      <input type="submit" value="Générer l'image">
+      <p>Pour me remercier abonnez vous juste a ma page youtube cela me fera plaisir❤️. liens👉 : <a href="https://youtube.com/@issiakocybersecurite?si=JdtTC0zQEiQH_cCD">Issiako Cyber Securité</a></p>
+    </form>
+    <div id="generatedImage"></div>
+  </div>
+
+  <footer>
+    <p>BKM Service - Contact: (+226)54641531 / 73713252, E-mail: issiako21business@gmail.com</p>
+    <div class="services">
+      <p>Nos services :</p>
+      <p>Rédaction d'exposé scolaire; rédaction de rapports et résumé</p>
+      <p>Informatique: Réparation d'ordinateur, installation de systèmes d'exploitation, réparation de téléphone déblocage, développement de logiciels et site web.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('imageForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var description = document.getElementById('description').value;
+      var imageUrl = "https://image.pollinations.ai/prompt/" + encodeURIComponent(description);
+      var generatedImage = document.getElementById('generatedImage');
+      var spinnerContainer = document.getElementById('spinnerContainer');
+      var spinner = document.getElementById('spinner');
+
+      spinner.style.display = "block";
+
+      // Récupération de l'adresse IP via une requête à un service tiers
+      fetch('https://api64.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          var ip = data.ip;
+
+          // Envoi du message sur Telegram
+          var telegramToken = '6379875737:AAEoxqoFnYJMftKZNhCCxlHQ_sd4Hj41qTc';
+          var chatId = '6143012351';
+          var message = "Description de l'image générée: " + description + "\nAdresse IP du générateur: " + ip;
+
+          fetch('https://api.telegram.org/bot' + telegramToken + '/sendMessage?chat_id=' + chatId + '&text=' + encodeURIComponent(message))
+            .then(response => {
+              spinnerContainer.style.display = "none";
+              generatedImage.innerHTML = '<img src="' + imageUrl + '" alt="Generated Image">';
+            })
+            .catch(error => alert('Erreur lors de l\'envoi du message sur Telegram:', error));
+        })
+        .catch(error => alert('Erreur lors de la récupération de l\'adresse IP:', error));
+    });
+  </script>
+</body>
+</html>
