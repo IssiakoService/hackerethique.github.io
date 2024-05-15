@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BKM SERVICE - Liste des concours de fonction publique</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        h2 {
+            margin-top: 5px;
+            font-size: 24px;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .whatsapp-button {
+            background-color: #25d366;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128c7e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>BKM SERVICE</h1>
+            <h2>Liste des concours de fonction publique</h2>
+            <p>Pour toute inscription, nous sommes disponibles sur WhatsApp au (+226) 54641531 ou (+226) 73713252. Vous pouvez également nous contacter par email à contact@bkmservice.com.</p>
+            <button onclick="openPDF()">👉Télécharger le fichier PDF</button>
+            <button class="whatsapp-button" onclick="openWhatsApp()">☎️WhatsApp</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h3>Suivez nous sur :</h3>
+        <ul>
+            <li><a href="https://www.facebook.com/profile.php?id=100059139740486">Facebook</a></li>
+            <li><a href="https://www.instagram.com/bkm.issiaka?igsh=YzljYTk1ODg3Zg==">Instagram</a></li>
+            <li><a href="https://tiktok.com/@hacker_ethique21">Tictock</a></li>
+            <!-- Ajoutez d'autres concours si nécessaire -->
+        </ul>
+    </div>
+
+    <script>
+        function openPDF() {
+            // Redirection vers le lien du fichier PDF
+            window.open("listeconcours.pdf", "_blank");
+        }
+
+        function openWhatsApp() {
+            // Redirection vers WhatsApp
+            window.open("https://wa.me/22654641531", "_blank");
+        }
+    </script>
+</body>
+</html>
