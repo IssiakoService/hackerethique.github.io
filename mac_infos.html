@@ -3,95 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recherche d'adresse MAC</title>
+    <title>Recherche d'Adresse MAC</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
             color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            text-align: center;
             margin: 0;
+            padding: 20px;
         }
         .container {
-            background-color: #fff;
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
             padding: 20px;
-            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
         }
         h1 {
-            color: #007bff;
+            color: #007BFF;
         }
-        input[type="text"] {
+        input {
             width: calc(100% - 22px);
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            font-size: 16px;
         }
-        input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            border: none;
+        button {
             padding: 10px 20px;
-            border-radius: 4px;
+            font-size: 16px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
             cursor: pointer;
         }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-        .social-links a {
-            margin: 0 5px;
-            text-decoration: none;
-            color: #007bff;
-        }
-        .social-links a:hover {
-            text-decoration: underline;
+        button:hover {
+            background: #0056b3;
         }
         .result {
             margin-top: 20px;
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007BFF;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Recherche d'adresse MAC</h1>
-        <form id="mac-form">
-            <input type="text" id="mac-address" placeholder="Entrez l'adresse MAC" required>
-            <input type="submit" value="Rechercher">
-        </form>
-        <div id="result" class="result"></div>
+        <h1>Recherche d'Adresse MAC</h1>
+        <input type="text" id="macAddress" placeholder="Entrez une adresse MAC">
+        <button onclick="lookupMac()">Rechercher</button>
+        <div class="result" id="result"></div>
         <div class="social-links">
-            <p>Merci de visiter notre site:</p>
-            <a href="https://www.bkmservice.com" target="_blank">BKM Service</a>
-            <p>Suivez-nous sur :</p>
-            <a href="https://www.facebook.com/votreprofil" target="_blank">Facebook</a>
-            <a href="https://www.twitter.com/votreprofil" target="_blank">Twitter</a>
-            <a href="https://www.tiktok.com/@votreprofil" target="_blank">TikTok</a>
-            <a href="https://www.instagram.com/votreprofil" target="_blank">Instagram</a>
-            <a href="https://www.youtube.com/channel/votreprofil" target="_blank">YouTube</a>
+            <a href="https://www.facebook.com">Facebook</a>
+            <a href="https://www.twitter.com">Twitter</a>
+            <a href="https://www.tiktok.com">TikTok</a>
+            <a href="https://www.instagram.com">Instagram</a>
+            <a href="https://www.youtube.com">YouTube</a>
+            <a href="https://www.bkmservice.com">BKM Service</a>
         </div>
     </div>
     <script>
-        document.getElementById('mac-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const macAddress = document.getElementById('mac-address').value;
-            const url = `https://api.macvendors.com/${encodeURIComponent(macAddress)}`;
-            
+        function lookupMac() {
+            var macAddress = document.getElementById('macAddress').value;
+            var url = `https://macvendors.co/api/${macAddress}`;
+
             fetch(url)
-                .then(response => response.text())
+                .then(response => response.json())
                 .then(data => {
-                    document.getElementById('result').innerText = `Fabricant: ${data}`;
+                    var resultDiv = document.getElementById('result');
+                    if (data.result) {
+                        resultDiv.innerHTML = `<p>Vendor: ${data.result.company}</p>
+                                               <p>Address: ${data.result.address}</p>
+                                               <p>Country: ${data.result.country}</p>`;
+                    } else {
+                        resultDiv.innerHTML = `<p>Aucun résultat trouvé pour cette adresse MAC.</p>`;
+                    }
                 })
                 .catch(error => {
-                    document.getElementById('result').innerText = 'Non trouvé';
-                    console.error('Erreur:', error);
+                    document.getElementById('result').innerHTML = `<p>Erreur : ${error}</p>`;
                 });
-        });
+        }
     </script>
 </body>
 </html>
