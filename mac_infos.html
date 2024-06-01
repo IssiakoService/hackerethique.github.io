@@ -65,14 +65,21 @@
             <input type="text" id="ipAddress" name="ipAddress" placeholder="Entrez une adresse IP"><br><br>
             <button type="button" onclick="scanIPAddress()">Scanner</button>
         </form>
+        <div id="result"></div>
     </div>
 
     <script>
         function scanIPAddress() {
             var ipAddress = document.getElementById("ipAddress").value;
-            // Vous pouvez effectuer votre logique de scan IP ici, par exemple, en utilisant des requêtes AJAX pour récupérer des informations sur l'adresse IP.
-            alert("Adresse IP à scanner : " + ipAddress);
-            // Vous pouvez remplacer l'alerte par le traitement approprié des données récupérées.
+            // Faites une requête AJAX pour récupérer des informations sur l'adresse IP
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "https://api.ipgeolocation.io/ipgeo?apiKey=de628c58ec554fadaeaf6ae19bd33110&ip=" + ipAddress, true);
+            xhttp.send();
         }
     </script>
 </body>
