@@ -3,91 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recherche d'Adresse MAC</title>
+    <title>Scanner d'adresse IP</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            text-align: center;
+            background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
         .container {
-            max-width: 600px;
-            margin: auto;
-            background: #fff;
+            background-color: #fff;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
-            color: #007BFF;
+            text-align: center;
         }
-        input {
-            width: calc(100% - 22px);
-            padding: 10px;
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
             margin: 10px 0;
-            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
+
         button {
             padding: 10px 20px;
-            font-size: 16px;
-            background: #007BFF;
+            background-color: #007bff;
             color: #fff;
             border: none;
             cursor: pointer;
+            border-radius: 4px;
         }
+
         button:hover {
-            background: #0056b3;
-        }
-        .result {
-            margin-top: 20px;
-        }
-        .social-links {
-            margin-top: 20px;
-        }
-        .social-links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #007BFF;
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Recherche d'Adresse MAC</h1>
-        <input type="text" id="macAddress" placeholder="Entrez une adresse MAC">
-        <button onclick="lookupMac()">Rechercher</button>
-        <div class="result" id="result"></div>
-        <div class="social-links">
-            <a href="https://www.facebook.com">Facebook</a>
-            <a href="https://www.twitter.com">Twitter</a>
-            <a href="https://www.tiktok.com">TikTok</a>
-            <a href="https://www.instagram.com">Instagram</a>
-            <a href="https://www.youtube.com">YouTube</a>
-            <a href="https://www.bkmservice.com">BKM Service</a>
-        </div>
+        <h1>Scanner d'adresse IP</h1>
+        <form id="ipScannerForm">
+            <label for="ipAddress">Entrez une adresse IP à scanner :</label><br>
+            <input type="text" id="ipAddress" name="ipAddress" placeholder="Entrez une adresse IP"><br><br>
+            <button type="button" onclick="scanIPAddress()">Scanner</button>
+        </form>
     </div>
-    <script>
-        function lookupMac() {
-            var macAddress = document.getElementById('macAddress').value;
-            var url = `https://macvendors.co/api/${macAddress}`;
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    var resultDiv = document.getElementById('result');
-                    if (data.result) {
-                        resultDiv.innerHTML = `<p>Vendor: ${data.result.company}</p>
-                                               <p>Address: ${data.result.address}</p>
-                                               <p>Country: ${data.result.country}</p>`;
-                    } else {
-                        resultDiv.innerHTML = `<p>Aucun résultat trouvé pour cette adresse MAC.</p>`;
-                    }
-                })
-                .catch(error => {
-                    document.getElementById('result').innerHTML = `<p>Erreur : ${error}</p>`;
-                });
+    <script>
+        function scanIPAddress() {
+            var ipAddress = document.getElementById("ipAddress").value;
+            // Vous pouvez effectuer votre logique de scan IP ici, par exemple, en utilisant des requêtes AJAX pour récupérer des informations sur l'adresse IP.
+            alert("Adresse IP à scanner : " + ipAddress);
+            // Vous pouvez remplacer l'alerte par le traitement approprié des données récupérées.
         }
     </script>
 </body>
