@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche d'adresse MAC</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .social-links a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recherche d'adresse MAC</h1>
+        <form id="mac-form">
+            <input type="text" id="mac-address" placeholder="Entrez l'adresse MAC" required>
+            <input type="submit" value="Rechercher">
+        </form>
+        <div id="result" class="result"></div>
+        <div class="social-links">
+            <p>Merci de visiter notre site:</p>
+            <a href="https://www.bkmservice.com" target="_blank">BKM Service</a>
+            <p>Suivez-nous sur :</p>
+            <a href="https://www.facebook.com/votreprofil" target="_blank">Facebook</a>
+            <a href="https://www.twitter.com/votreprofil" target="_blank">Twitter</a>
+            <a href="https://www.tiktok.com/@votreprofil" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com/votreprofil" target="_blank">Instagram</a>
+            <a href="https://www.youtube.com/channel/votreprofil" target="_blank">YouTube</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('mac-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const macAddress = document.getElementById('mac-address').value;
+            const url = `https://api.macvendors.com/${encodeURIComponent(macAddress)}`;
+            
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('result').innerText = `Fabricant: ${data}`;
+                })
+                .catch(error => {
+                    document.getElementById('result').innerText = 'Non trouvé';
+                    console.error('Erreur:', error);
+                });
+        });
+    </script>
+</body>
+</html>
