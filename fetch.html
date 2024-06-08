@@ -14,11 +14,11 @@
     <script>
         async function getData() {
             try {
-                let response = await fetch('http://127.0.0.1:5000/api/data');
+                let response = await fetch('https://issiako21.pythonanywhere.com/api/data');
                 let data = await response.json();
                 document.getElementById('response').innerText = JSON.stringify(data);
             } catch (error) {
-                console.error('Error:', error);
+                alert('Error:', error);
             }
         }
 
