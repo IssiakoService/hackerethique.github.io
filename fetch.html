@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask and JavaScript</title>
+    <title>Communicate with Flask Server</title>
 </head>
 <body>
     <h1>Communicate with Flask Server</h1>
@@ -12,30 +12,28 @@
     <p id="response"></p>
 
     <script>
-        async function getData() {
-            try {
-                let response = await fetch('https://issiako21.pythonanywhere.com/api/data');
-                let data = await response.json();
-                document.getElementById('response').innerText = JSON.stringify(data);
-            } catch (error) {
-                alert('Error:', error);
-            }
+        function getData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://issiako21.pythonanywhere.com/api/data", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById('response').innerText = xhr.responseText;
+                }
+            };
+            xhr.send();
         }
 
-        async function postData() {
-            try {
-                let response = await fetch('https://issiako21.pythonanywhere.com/api/data', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({message: 'Hello from JavaScript!'})
-                });
-                let data = await response.json();
-                document.getElementById('response').innerText = JSON.stringify(data);
-            } catch (error) {
-                alert('Error:', error);
-            }
+        function postData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://issiako21.pythonanywhere.com/api/datas", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById('response').innerText = xhr.responseText;
+                }
+            };
+            var data = JSON.stringify({ "message": "Hello from JavaScript!" });
+            xhr.send(data);
         }
     </script>
 </body>
