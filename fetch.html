@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Envoyer des données à PHP via JavaScript</title>
+    <title>Flask and JavaScript</title>
 </head>
 <body>
-    <h1>Formulaire d'envoi de données à PHP</h1>
-    <form id="myForm">
-        <label for="nom">Nom du fichier :</label>
-        <input type="text" id="nom" name="nom"><br><br>
-        <label for="contenu">Contenu du fichier :</label><br>
-        <textarea id="contenu" name="contenu" rows="4" cols="50"></textarea><br><br>
-        <button type="button" onclick="envoyerDonnees()">Envoyer</button>
-    </form>
+    <h1>Communicate with Flask Server</h1>
+    <button onclick="getData()">Get Data</button>
+    <button onclick="postData()">Post Data</button>
+    <p id="response"></p>
 
     <script>
-        function envoyerDonnees() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://createurdecv.atwebpages.com/receveur.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log(xhr.responseText);
-                    alert(xhr.responseText); // Afficher la réponse du serveur
-                }
-            };
+        async function getData() {
+            try {
+                let response = await fetch('http://127.0.0.1:5000/api/data');
+                let data = await response.json();
+                document.getElementById('response').innerText = JSON.stringify(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
 
-            var nom = document.getElementById("nom").value;
-            var contenu = document.getElementById("contenu").value;
-            var data = "nom=" + encodeURIComponent(nom) + "&contenu=" + encodeURIComponent(contenu);
-
-            xhr.send(data);
+        async function postData() {
+            try {
+                let response = await fetch('https://issiako21.pythonanywhere.com/api/data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({message: 'Hello from JavaScript!'})
+                });
+                let data = await response.json();
+                document.getElementById('response').innerText = JSON.stringify(data);
+            } catch (error) {
+                alert('Error:', error);
+            }
         }
     </script>
 </body>
