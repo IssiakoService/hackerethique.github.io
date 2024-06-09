@@ -3,38 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communicate with Flask Server</title>
+    <title>Client JavaScript</title>
 </head>
 <body>
-    <h1>Communicate with Flask Server</h1>
-    <button onclick="getData()">Get Data</button>
-    <button onclick="postData()">Post Data</button>
-    <p id="response"></p>
+    <form id="clientForm">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom"><br>
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom"><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br>
+        <button type="submit">Ajouter Client</button>
+    </form>
 
     <script>
-        function getData() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://issiako21.pythonanywhere.com/api/data", true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById('response').innerText = xhr.responseText;
-                }
-            };
-            xhr.send();
-        }
+        document.getElementById('clientForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        function postData() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://issiako21.pythonanywhere.com/api/datas", true);
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById('response').innerText = xhr.responseText;
+            const nom = document.getElementById('nom').value;
+            const prenom = document.getElementById('prenom').value;
+            const email = document.getElementById('email').value;
+
+            fetch('http://issiako21.pythonanywhere.com/add_client', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nom: nom,
+                    prenom: prenom,
+                    email: email
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message + ' Token: ' + data.token_connexion);
+                } else {
+                    alert('Erreur: ' + data.error);
                 }
-            };
-            var data = JSON.stringify({ "message": "Hello from JavaScript!" });
-            xhr.send(data);
-        }
+            })
+            .catch(error => {
+                alert('Erreur:', error);
+            });
+        });
     </script>
 </body>
 </html>
