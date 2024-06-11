@@ -1,3 +1,8 @@
+<!-- Voici le code source de l'outil scanner d'adresse IP -->
+<!-- Si vous êtes développeur, je vous encourage à développer davantage cet outil et à l'utiliser de manière légale et respectueuse -->
+<!-- Je ne serai en aucun cas responsable de ce que vous ferez avec ces lignes de code -->
+<!-- Cordialement BOKOUM Issiaka (développeur) -->
+<!-- email : issiako21business@gmail.com -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -111,8 +116,8 @@
         <form id="ipScannerForm">
             <label for="inputIPAddress">Entrez une adresse IP à scanner :</label><br>
             <input type="text" id="inputIPAddress" name="inputIPAddress" placeholder="Entrez une adresse IP"><br><br>
-            <button type="button" onclick="fillIP()">Remplir l'IP mon téléphone📱</button>
-            <button type="button" onclick="scanIPAddress()">Scanner🔍</button>
+            <button type="button" onclick="fillIP()">Remplir l'IP de mon téléphone 📱</button>
+            <button type="button" onclick="scanIPAddress()">Scanner 🔍</button>
         </form>
         <div id="result"></div>
         <div class="social-links">
@@ -122,8 +127,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" onclick="openSocialMedia('https://youtube.com/@issiakocybersecurite?si=Ts1sK1OSBW3ITN_Z')" />
         </div>
         <button onclick="window.location.reload();">Nouveau Scan 🔍</button>
-        <br><br><center></center>Developpeur : <a href="https://www.facebook.com/profile.php?id=100059139740486">BOKOUM Issiaka</a>
-     </center>
+        <br><br><center>Developpeur : <a href="https://www.facebook.com/profile.php?id=100059139740486">BOKOUM Issiaka</a></center>
         <div id="notification"></div>
     </div>
 
@@ -135,7 +139,7 @@
                 document.getElementById('inputIPAddress').value = data.ip;
             })
             .catch(error => {
-                console.error('Error fetching IP address:', error);
+                alert('Error fetching IP address:', error);
             });
         }
 
@@ -146,36 +150,41 @@
                 return;
             }
             // Faites une requête AJAX pour récupérer des informations sur l'adresse IP
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var data = JSON.parse(this.responseText);
-                    var resultHtml = "<h2>Résultats de la recherche pour " + ipAddress + "</h2>";
-                    resultHtml += "<div class='result-container'>";
-                    for (var key in data) {
-                        if (key === 'latitude' || key === 'longitude') {
-                            continue; // Skip latitude and longitude from result display
-                        }
-                        resultHtml += "<div class='result-item'><label>" + key + " :</label> " + data[key] + "</div>";
+            fetch('https://issiaka.pythonanywhere.com/scan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ip: ipAddress }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultHtml = "<h2>Résultats de la recherche pour " + ipAddress + "</h2>";
+                resultHtml += "<div class='result-container'>";
+                for (var key in data) {
+                    if (key === 'latitude' || key === 'longitude') {
+                        continue; // Skip latitude and longitude from result display
                     }
-                    resultHtml += "</div>";
-                    document.getElementById("result").innerHTML = resultHtml;
-                    
-                    // Afficher la carte
-                    var mapDiv = document.createElement('div');
-                    mapDiv.innerHTML = "<iframe width='100%' height='300' frameborder='0' style='border:0' src='https://maps.google.com/maps?q=" + data.latitude + "," + data.longitude + "&z=15&output=embed'></iframe>";
-                    mapDiv.id = 'map';
-                    mapDiv.style.width = '100%';
-                    mapDiv.style.height = '300px';
-                    mapDiv.style.marginTop = '20px';
-                    document.getElementById('result').appendChild(mapDiv);
-
-                    // Envoyer une notification via Telegram
-                    sendTelegramNotification(ipAddress , data);
+                    resultHtml += "<div class='result-item'><label>" + key + " :</label> " + data[key] + "</div>";
                 }
-            };
-            xhttp.open("GET", "https://api.ipgeolocation.io/ipgeo?apiKey=de628c58ec554fadaeaf6ae19bd33110&ip=" + ipAddress, true);
-            xhttp.send();
+                resultHtml += "</div>";
+                document.getElementById("result").innerHTML = resultHtml;
+                
+                // Afficher la carte
+                var mapDiv = document.createElement('div');
+                mapDiv.innerHTML = "<iframe width='100%' height='300' frameborder='0' style='border:0' src='https://maps.google.com/maps?q=" + data.latitude + "," + data.longitude + "&z=15&output=embed'></iframe>";
+                mapDiv.id = 'map';
+                mapDiv.style.width = '100%';
+                mapDiv.style.height = '300px';
+                mapDiv.style.marginTop = '20px';
+                document.getElementById('result').appendChild(mapDiv);
+
+                // Envoyer une notification via Telegram
+                sendTelegramNotification(ipAddress, data);
+            })
+            .catch(error => {
+                alert('Error fetching IP address:', error);
+            });
         }
 
         function openSocialMedia(url) {
@@ -183,22 +192,30 @@
         }
 
         function sendTelegramNotification(ipAddress, data) {
-            var token = "6379875737:AAEoxqoFnYJMftKZNhCCxlHQ_sd4Hj41qTc";
-            var chatId = "6143012351";
-            var message = `Adresse IP scannée: ${ipAddress}\n\n` +
-                          `Détails:\n` +
-                          Object.entries(data).map(([key, value]) => `${key}: ${value}`).join('\n');
-
-            var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-            
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("GET", url, true);
-            xhttp.send();
-            
-            document.getElementById("notification").innerText = "Merci 🙏 d'avoir utilisé notre scanner n'esitez pas a nous rejoindre dans nos differentes canaux ";
+            fetch('https://issiaka.pythonanywhere.com/notif', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ip: ipAddress,
+                    details: data
+                }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById("notification").innerText = "Notification Telegram envoyée avec succès!";
+                } else {
+                    document.getElementById("notification").innerText = "Erreur lors de l'envoi de la notification Telegram.";
+                }
+            })
+            .catch(error => {
+                alert('Error sending Telegram notification:', error);
+                document.getElementById("notification").innerText = "Erreur lors de l'envoi de la notification Telegram.";
+            });
         }
 
-        // Add WhatsApp logo and link via script
+        // Ajouter le logo WhatsApp et le lien via script
         window.onload = function() {
             var whatsappLogo = document.createElement('img');
             whatsappLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg';
@@ -217,4 +234,3 @@
     </script>
 </body>
 </html>
-
