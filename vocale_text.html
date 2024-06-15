@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enregistrement vocal et transcription</title>
+</head>
+<body>
+    <h1>Enregistrement vocal et transcription</h1>
+    <button id="recordButton">Commencer l'enregistrement</button>
+    <button id="stopButton" disabled>Arrêter l'enregistrement</button>
+    <p id="status"></p>
+    <p>Texte transcrit :</p>
+    <p id="transcription"></p>
+
+    <script>
+        let isRecording = false;
+        let mediaRecorder;
+        let audioChunks = [];
+
+        const recordButton = document.getElementById('recordButton');
+        const stopButton = document.getElementById('stopButton');
+        const status = document.getElementById('status');
+        const transcription = document.getElementById('transcription');
+
+        recordButton.addEventListener('click', () => {
+            if (!isRecording) {
+                startRecording();
+            }
+        });
+
+        stopButton.addEventListener('click', () => {
+            if (isRecording) {
+                stopRecording();
+            }
+        });
+
+        function startRecording() {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.start();
+
+                    mediaRecorder.addEventListener('dataavailable', event => {
+                        audioChunks.push(event.data);
+                    });
+
+                    mediaRecorder.addEventListener('stop', () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/ogg; codecs=opus' });
+                        audioChunks = [];
+                        sendAudioToServer(audioBlob);
+                    });
+
+                    isRecording = true;
+                    recordButton.disabled = true;
+                    stopButton.disabled = false;
+                    status.textContent = 'Enregistrement en cours...';
+                })
+                .catch(error => {
+                    alert('Erreur d\'enregistrement audio:', error);
+                });
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+            isRecording = false;
+            recordButton.disabled = false;
+            stopButton.disabled = true;
+            status.textContent = 'Enregistrement arrêté.';
+        }
+
+        function sendAudioToServer(audioBlob) {
+            const formData = new FormData();
+            formData.append('audio', audioBlob, 'audio.ogg');
+
+            fetch('https://issiaka.pythonanywhere.com/webhook', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.status === "ok") {
+                    status.textContent = 'Transcription réussie.';
+                    transcription.textContent = data.text;
+                } else {
+                    status.textContent = 'Erreur de transcription.';
+                }
+            })
+            .catch(error => {
+                alert('Erreur lors de l\'envoi de l\'audio:', error);
+                status.textContent = 'Erreur lors de l\'envoi de l\'audio.';
+            });
+        }
+    </script>
+</body>
+</html>
