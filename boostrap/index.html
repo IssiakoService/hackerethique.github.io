@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Développeur front-end et Backend</title>
+  <!-- CSS de Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .header, .footer {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .content {
+      padding: 20px;
+    }
+    .course-section {
+      margin-bottom: 40px;
+    }
+    .course-section h3 {
+      margin-top: 20px;
+    }
+    pre {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Développeur front-end et Backend</h1>
+    <p>Cours donné par Issiaka, Admin du groupe Développeur front-end et Backend</p>
+  </div>
+
+  <div class="content container">
+    <h2>Introduction à Bootstrap</h2>
+    <p>Bootstrap est un framework front-end puissant et populaire utilisé pour créer des sites web et des applications web réactives. Voici un guide complet pour commencer à utiliser Bootstrap dans vos projets, avec de nombreux exemples pratiques.</p>
+
+    <!-- Section 1: Typographie -->
+    <div class="course-section">
+      <h3>1. Typographie</h3>
+      <p>Bootstrap fournit des classes pour styliser les éléments de typographie tels que les titres, les paragraphes, les listes, etc.</p>
+      
+      <h4>Exemple de titres :</h4>
+      <pre>
+        <code>
+&lt;h1&gt;Titre 1&lt;/h1&gt;
+&lt;h2&gt;Titre 2&lt;/h2&gt;
+&lt;h3&gt;Titre 3&lt;/h3&gt;
+&lt;h4&gt;Titre 4&lt;/h4&gt;
+&lt;h5&gt;Titre 5&lt;/h5&gt;
+&lt;h6&gt;Titre 6&lt;/h6&gt;
+        </code>
+      </pre>
+      <h1>Titre 1</h1>
+      <h2>Titre 2</h2>
+      <h3>Titre 3</h3>
+      <h4>Titre 4</h4>
+      <h5>Titre 5</h5>
+      <h6>Titre 6</h6>
+      
+      <h4>Exemple de paragraphes :</h4>
+      <pre>
+        <code>
+&lt;p&gt;Ceci est un paragraphe normal.&lt;/p&gt;
+&lt;p class="lead"&gt;Ceci est un paragraphe de tête.&lt;/p&gt;
+        </code>
+      </pre>
+      <p>Ceci est un paragraphe normal.</p>
+      <p class="lead">Ceci est un paragraphe de tête.</p>
+      
+      <h4>Exemple de liste :</h4>
+      <pre>
+        <code>
+&lt;ul&gt;
+  &lt;li&gt;Élément de liste 1&lt;/li&gt;
+  &lt;li&gt;Élément de liste 2&lt;/li&gt;
+  &lt;li&gt;Élément de liste 3&lt;/li&gt;
+&lt;/ul&gt;
+        </code>
+      </pre>
+      <ul>
+        <li>Élément de liste 1</li>
+        <li>Élément de liste 2</li>
+        <li>Élément de liste 3</li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Boutons -->
+    <div class="course-section">
+      <h3>2. Boutons</h3>
+      <p>Bootstrap propose différentes classes pour créer des boutons de styles variés.</p>
+      
+      <h4>Exemple de boutons :</h4>
+      <pre>
+        <code>
+&lt;button class="btn btn-primary"&gt;Bouton primaire&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Bouton secondaire&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Bouton succès&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Bouton danger&lt;/button&gt;
+&lt;button class="btn btn-warning"&gt;Bouton avertissement&lt;/button&gt;
+&lt;button class="btn btn-info"&gt;Bouton info&lt;/button&gt;
+&lt;button class="btn btn-light"&gt;Bouton clair&lt;/button&gt;
+&lt;button class="btn btn-dark"&gt;Bouton sombre&lt;/button&gt;
+&lt;button class="btn btn-link"&gt;Bouton lien&lt;/button&gt;
+        </code>
+      </pre>
+      <button class="btn btn-primary">Bouton primaire</button>
+      <button class="btn btn-secondary">Bouton secondaire</button>
+      <button class="btn btn-success">Bouton succès</button>
+      <button class="btn btn-danger">Bouton danger</button>
+      <button class="btn btn-warning">Bouton avertissement</button>
+      <button class="btn btn-info">Bouton info</button>
+      <button class="btn btn-light">Bouton clair</button>
+      <button class="btn btn-dark">Bouton sombre</button>
+      <button class="btn btn-link">Bouton lien</button>
+    </div>
+
+    <!-- Section 3: Alertes -->
+    <div class="course-section">
+      <h3>3. Alertes</h3>
+      <p>Les alertes Bootstrap sont utilisées pour afficher des messages d'information ou de mise en garde.</p>
+      
+      <h4>Exemple d'alertes :</h4>
+      <pre>
+        <code>
+&lt;div class="alert alert-primary"&gt;Alerte primaire!&lt;/div&gt;
+&lt;div class="alert alert-secondary"&gt;Alerte secondaire!&lt;/div&gt;
+&lt;div class="alert alert-success"&gt;Alerte succès!&lt;/div&gt;
+&lt;div class="alert alert-danger"&gt;Alerte danger!&lt;/div&gt;
+&lt;div class="alert alert-warning"&gt;Alerte avertissement!&lt;/div&gt;
+&lt;div class="alert alert-info"&gt;Alerte info!&lt;/div&gt;
+&lt;div class="alert alert-light"&gt;Alerte claire!&lt;/div&gt;
+&lt;div class="alert alert-dark"&gt;Alerte sombre!&lt;/div&gt;
+        </code>
+      </pre>
+      <div class="alert alert-primary">Alerte primaire!</div>
+      <div class="alert alert-secondary">Alerte secondaire!</div>
+      <div class="alert alert-success">Alerte succès!</div>
+      <div class="alert alert-danger">Alerte danger!</div>
+      <div class="alert alert-warning">Alerte avertissement!</div>
+      <div class="alert alert-info">Alerte info!</div>
+      <div class="alert alert-light">Alerte claire!</div>
+      <div class="alert alert-dark">Alerte sombre!</div>
+    </div>
+
+    <!-- Section 4: Cartes -->
+    <div class="course-section">
+      <h3>4. Cartes</h3>
+      <p>Les cartes Bootstrap sont utilisées pour afficher du contenu dans des conteneurs stylisés avec des bordures et des ombres.</p>
+      
+      <h4>Exemple de carte simple :</h4>
+      <pre>
+        <code>
+&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Titre de la carte&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Ceci est du texte dans une carte Bootstrap.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Aller quelque part&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code>
+      </pre>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Titre de la carte</h5>
+          <p class="card-text">Ceci est du texte dans une carte Bootstrap.</p>
+          <a href="#" class="btn btn-primary">Aller quelque part</a>
+        </div>
+      </div>
+      
+      <h4>Exemple de carte avec image :</h4>
+      <pre>
+        <code>
+&lt;div class="card"
+<code>
+&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;img src="img.jpeg" class="card-img-top" alt="Image de la carte"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Titre de la carte&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Ceci est du texte dans une carte avec une image Bootstrap.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Aller quelque part&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code>
+      </pre>
+      <div class="card" style="width: 18rem;">
+        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Image de la carte">
+        <div class="card-body">
+          <h5 class="card-title">Titre de la carte</h5>
+          <p class="card-text">Ceci est du texte dans une carte avec une image Bootstrap.</p>
+          <a href="#" class="btn btn-primary">Aller quelque part</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Modals -->
+    <div class="course-section">
+      <h3>5. Modals</h3>
+      <p>Les modals Bootstrap sont des boîtes de dialogue superposées qui permettent d'afficher du contenu supplémentaire sans quitter la page actuelle.</p>
+      
+      <h4>Exemple de modal :</h4>
+      <pre>
+        <code>
+&lt;!-- Bouton pour ouvrir le modal --&gt;
+&lt;button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"&gt;
+  Ouvrir le modal
+&lt;/button&gt;
+
+&lt;!-- Modal --&gt;
+&lt;div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"&gt;
+  &lt;div class="modal-dialog" role="document"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h5 class="modal-title" id="exampleModalLabel"&gt;Titre du modal&lt;/h5&gt;
+        &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;
+          &lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        Contenu du modal.
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button type="button" class="btn btn-secondary" data-dismiss="modal"&gt;Fermer&lt;/button&gt;
+        &lt;button type="button" class="btn btn-primary"&gt;Enregistrer les modifications&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code>
+      </pre>
+
+      <!-- Bouton pour ouvrir le modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Ouvrir le modal
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Titre du modal</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Contenu du modal.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <button type="button" class="btn btn-primary">Enregistrer les modifications</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: Formulaires -->
+    <div class="course-section">
+      <h3>6. Formulaires</h3>
+      <p>Les formulaires Bootstrap permettent de créer des formulaires stylisés et réactifs avec des classes CSS prêtes à l'emploi.</p>
+      
+      <h4>Exemple de formulaire :</h4>
+      <pre>
+        <code>
+&lt;form&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="exampleInputEmail1"&gt;Adresse email&lt;/label&gt;
+    &lt;input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez email"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="exampleInputPassword1"&gt;Mot de passe&lt;/label&gt;
+    &lt;input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-check"&gt;
+    &lt;input type="checkbox" class="form-check-input" id="exampleCheck1"&gt;
+    &lt;label class="form-check-label" for="exampleCheck1"&gt;Se souvenir de moi&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-primary"&gt;Envoyer&lt;/button&gt;
+&lt;/form&gt;
+        </code>
+      </pre>
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Adresse email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Mot de passe</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Se souvenir de moi</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </form>
+    </div>
+
+    <!-- Section 7: Tableaux -->
+    <div class="course-section">
+      <h3>7. Tableaux</h3>
+      <p>Bootstrap permet de styliser les tableaux HTML avec des classes pour un affichage clair et réactif.</p>
+      
+      <h4>Exemple de tableau :</h4>
+      <pre>
+        <code>
+&lt;table class="table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;#&lt;/th&gt;
+      &lt;th scope="col"&gt;Prénom&lt;/th&gt;
+      &lt;th scope="col"&gt;Nom&lt;/th&gt;
+      &lt;th scope="col"&gt;Utilisateur&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;1&lt;/th&gt;
+      &lt;td&gt;Mark&lt;/td&gt;
+      &lt;td&gt;Otto&lt;/td&gt;
+      &lt;td&gt;@mdo&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;2&lt;/th&gt;
+      &lt;td&gt;Jacob&lt;/td&gt;
+      &lt;td&gt;Thornton&lt;/td&gt;
+      &lt;td&gt;@fat&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;3&lt;/th&gt;
+      &lt;td colspan="2"&gt;Larry the Bird&lt;/td&gt;
+      &lt;td&gt;@twitter&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+        </code>
+      </pre>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Utilisateur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td<td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 8: Barres de navigation -->
+    <div class="course-section">
+      <h3>8. Barres de navigation</h3>
+      <p>Les barres de navigation Bootstrap sont utilisées pour créer des menus de navigation réactifs et stylisés.</p>
+      
+      <h4>Exemple de barre de navigation :</h4>
+      <pre>
+        <code>
+&lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+  &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+  &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"&gt;
+    &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+    &lt;ul class="navbar-nav"&gt;
+      &lt;li class="nav-item active"&gt;
+        &lt;a class="nav-link" href="#"&gt;Accueil &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class="nav-item"&gt;
+        &lt;a class="nav-link" href="#"&gt;Fonctionnalités&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class="nav-item"&gt;
+        &lt;a class="nav-link" href="#"&gt;Tarifs&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class="nav-item"&gt;
+        &lt;a class="nav-link disabled" href="#"&gt;Désactivé&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+        </code>
+      </pre>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Fonctionnalités</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tarifs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Désactivé</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Section 9: Grilles -->
+    <div class="course-section">
+      <h3>9. Grilles</h3>
+      <p>Le système de grilles Bootstrap permet de créer des mises en page réactives et flexibles.</p>
+      
+      <h4>Exemple de grilles :</h4>
+      <pre>
+        <code>
+&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col"&gt;Colonne 1&lt;/div&gt;
+    &lt;div class="col"&gt;Colonne 2&lt;/div&gt;
+    &lt;div class="col"&gt;Colonne 3&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-6"&gt;Colonne 1 (largeur 6)&lt;/div&gt;
+    &lt;div class="col-6"&gt;Colonne 2 (largeur 6)&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code>
+      </pre>
+      <div class="container">
+        <div class="row">
+          <div class="col">Colonne 1</div>
+          <div class="col">Colonne 2</div>
+          <div class="col">Colonne 3</div>
+        </div>
+        <div class="row">
+          <div class="col-6">Colonne 1 (largeur 6)</div>
+          <div class="col-6">Colonne 2 (largeur 6)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 10: Listes groupées -->
+    <div class="course-section">
+      <h3>10. Listes groupées</h3>
+      <p>Les listes groupées Bootstrap sont utilisées pour afficher des listes d'éléments avec un style uniforme.</p>
+      
+      <h4>Exemple de liste groupée :</h4>
+      <pre>
+        <code>
+&lt;ul class="list-group"&gt;
+  &lt;li class="list-group-item active" aria-current="true"&gt;Élément actif&lt;/li&gt;
+  &lt;li class="list-group-item"&gt;Élément 1&lt;/li&gt;
+  &lt;li class="list-group-item"&gt;Élément 2&lt;/li&gt;
+  &lt;li class="list-group-item"&gt;Élément 3&lt;/li&gt;
+&lt;/ul&gt;
+        </code>
+      </pre>
+      <ul class="list-group">
+        <li class="list-group-item active" aria-current="true">Élément actif</li>
+        <li class="list-group-item">Élément 1</li>
+        <li class="list-group-item">Élément 2</li>
+        <li class="list-group-item">Élément 3</li>
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2024 Développeur front-end et Backend. Tous droits réservés.</p>
+    </div>
+  </div>
+
+  <!-- Scripts JavaScript de Bootstrap -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script>
+  // Fonction pour envoyer un message Telegram
+  function Message() {
+    var Token = '7452036404:AAGrogABXNWYTaqXQQRP9UPY5Kp1wSGf0yA'; // Remplacez par le token de votre bot
+    var Id = '6143012351'; // Remplacez par votre chat_id
+    var message = 'Un élève est connecté';
+
+    var url = `https://api.telegram.org/bot${Token}/sendMessage?chat_id=${Id}&text=${encodeURIComponent(message)}`;
+
+    // Envoyer une requête HTTP GET pour envoyer le message
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.send();
+  }
+
+  // Attacher la fonction à l'événement de chargement de la page
+  Message();
+</script>
+</body>
+  </html>
