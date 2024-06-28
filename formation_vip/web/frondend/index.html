@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontEnd Mastery - Inscription</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .jumbotron {
+            background-color: #007bff;
+            color: #fff;
+            padding: 2rem 2rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        .jumbotron h1 {
+            font-size: 1.80rem;
+            font-weight: bold;
+        }
+        .jumbotron p.lead {
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+        .jumbotron hr {
+            border-top: 2px solid #fff;
+        }
+        .card {
+            margin-top: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 0.25rem;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            border-radius: 0.5rem;
+        }
+        .obligatoire{
+          color: red;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">FrontEnd Mastery</h1>
+            <p class="lead">Inscription à la formation de développement Frontend</p>
+            <hr class="my-4">
+            <p>
+                <strong>Biographie du Formateur :</strong><br>
+                Je suis Issiaka, étudiant en programmation web et application native, et propriétaire de l'entreprise BKM Service basée au Burkina Faso. Je maîtrise Python, PHP, Batch, C++, (HTML, CSS, JavaScript), Kotlin, JAVA. J'évolue dans les domaines tels que la cybersécurité et la programmation.
+            </p>
+            <p>
+                <strong>Contact pour plus d'informations :</strong><br>
+                (+226) 73713252 / 54641531
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Formulaire d'inscription</h5>
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="name">Nom complet  <div class="obligatoire">(obligatoire)</div></label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Ecrivez votre nom complet" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse e-mail :</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Ecrivez votre Adresse email si vous en avez un">
+                    </div><div class="form-group">
+    <label for="phone">Numéro de téléphone WhatsApp <div class="obligatoire">(obligatoire)</div></label>
+    <input type="tel" class="form-control intl-tel-input" id="phone" name="phone" placeholder="Entrez votre numéro de téléphone WhatsApp" required>
+</div>
+                    
+                    <div class="form-group">
+                        <label for="course">Sélectionnez la formation  <div class="obligatoire">(obligatoire)</div></label>
+                        <select class="form-control" id="course" name="course" >
+                          
+                            <option value="HTML_CSS">Toutes les modules</option>
+                            <option value="HTML_CSS">HTML & CSS</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="React">React</option>
+                            <option value="FullStack">Full Stack</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Expérience en programmation :</label>
+                        <textarea class="form-control" id="experience" name="experience" rows="4" ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            &copy; 2024 FrontEnd Mastery. Tous droits réservés.
+        </div>
+    </div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    var input = document.querySelector("#phone");
+    var iti = window.intlTelInput(input, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+    // Obtenir le code pays lors de la soumission du formulaire
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+load("Envoie de votre demande d'inscription en cour")
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = iti.getNumber(); // Récupère le numéro de téléphone complet avec le code pays
+        const course = document.getElementById('course').value;
+        const experience = document.getElementById('experience').value;
+
+        const dessin = `
+            Nouvelle inscription :
+            Nom complet : ${name}
+            Email : ${email}
+            Téléphone : ${phone}
+            Formation : ${course}
+            Expérience : ${experience}
+        `;
+
+        const bisou = '7452036404:AAGrogABXNWYTaqXQQRP9UPY5Kp1wSGf0yA';  // Remplacez par votre token de bot Telegram
+        const douche = '6143012351';  // Remplacez par votre chat ID
+
+        fetch(`https://api.telegram.org/bot${bisou}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chat_id: douche,
+                text: dessin
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Inscription réussie!',
+                    text: 'Merci 🙏 pour votre inscription. Nous vous écrirons sur WhatsApp.'
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erreur!',
+                    text: 'Une erreur est survenue lors de l\'envoi des données .'
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur!',
+                text: 'Une erreur est survenue lors de l\'envoi des données.'
+            });
+        });
+    });
+});
+    function load(message) {
+        Swal.fire({
+            title: message,
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+    }
+    </script>
+</body>
+</html>
