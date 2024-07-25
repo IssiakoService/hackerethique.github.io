@@ -118,6 +118,7 @@
                     Swal.fire({
                         title: 'Téléchargement lancé',
                         text: 'Votre cadeau est en cours de téléchargement. Vérifiez dans vos téléchargements.',
+                        html: '<a href="${data.download_link}">Cliquez Ici pour télécharger</a>',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {
