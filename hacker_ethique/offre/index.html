@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACKER ÉTHIQUE - Vérification de Suivi TikTok</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1516908155431-0fa45c91a717') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+            color: #fff;
+        }
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            background-color: #1DA1F2;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 30px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #0d95e8;
+        }
+        .btn-follow {
+            background-color: #fff;
+            color: #1DA1F2;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 30px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 20px;
+        }
+        .btn-follow:hover {
+            background-color: #1DA1F2;
+            color: #fff;
+        }
+        .instructions {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .instructions a {
+            color: #1DA1F2;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">
+            <img src="hacker.jpg" alt="TikTok Logo" class="logo"> HACKER ÉTHIQUE
+        </h1>
+        <p class="instructions">
+            Entrez votre nom d'utilisateur TikTok pour vérifier si vous suivez notre chaîne TikTok.<br>
+            Si vous suivez notre chaîne, le lien de téléchargement de votre cadeau sera automatiquement lancé.<br>
+        </p>
+        <form id="followForm">
+            <div class="form-group">
+                <label for="user_name">Nom d'utilisateur TikTok :</label>
+                <input type="text" class="form-control" id="user_name" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Vérifier</button>
+        </form>
+        <a href="https://vm.tiktok.com/ZMr9dgDLq" class="btn btn-follow" target="_blank">Suivre HACKER ÉTHIQUE</a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        function sanitizeInput(input) {
+            return input.replace(/@/g, '');
+        }
+
+        document.getElementById('followForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let userName = document.getElementById('user_name').value;
+            userName = sanitizeInput(userName);  // Remove '@' from the input
+
+            fetch('https://issiako21.pythonanywhere.com/follower', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_name: userName })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.download_link) {
+                    Swal.fire({
+                        title: 'Téléchargement lancé',
+                        text: 'Votre cadeau est en cours de téléchargement. Vérifiez dans vos téléchargements.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location.href = data.download_link;
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Suivi requis',
+                        text: 'Veuillez suivre notre chaîne TikTok pour obtenir le lien de téléchargement.',
+                        icon: 'info',
+                        confirmButtonText: 'OK',
+                        html: `<a href="https://vm.tiktok.com/ZMr9dgDLq" target="_blank" style="color: #1DA1F2;">Suivez-nous sur TikTok</a>`
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Erreur'+ error,
+                    text: 'Une erreur est survenue. Veuillez réessayer plus tard.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
